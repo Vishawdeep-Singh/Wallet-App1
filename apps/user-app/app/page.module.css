@@ -186,3 +186,7 @@ button.secondary {
     filter: invert();
   }
 }
+
+#vaultbtn{
+  box-shadow: '10px 10px 0px rgba(175, 80, 220, .7)';
+}

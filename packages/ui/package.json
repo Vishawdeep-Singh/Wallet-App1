@@ -3,9 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./image-motion": "./src/image-motion.tsx",
+    "./appbar": "./src/appbar.tsx",
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./code": "./src/code.tsx",
+    "./label": "./src/label.tsx",
+    "./input": "./src/input.tsx"
+    
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -15,14 +20,18 @@
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@turbo/gen": "^1.12.4",
-    "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",
+    "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.7",
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "framer-motion": "^11.3.21",
     "react": "^18.2.0"
   }
 }

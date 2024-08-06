@@ -1,0 +1,48 @@
+
+/* Ensure the parent container is positioned correctly */
+.motion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative; /* Ensure it positions children correctly */
+  }
+  
+  /* Style the button to be centrally aligned */
+  .motion-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+    outline: none;
+  }
+  
+  /* Ensure the SVG is centered and properly sized */
+  .motion-svg {
+    width: 48px;
+    height: 48px;
+    color: gray; /* Adjust as needed */
+  }
+  
+  /* Style the UL for vertical alignment and ensure no overflow */
+  .motion-ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the list items */
+    margin: 10px 0; /* Add some margin around the list */
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Ensure list items are styled and spaced */
+  .motion-li {
+    margin: 5px 0; /* Space out the list items */
+    padding: 10px;
+    color: black; /* Adjust color as needed */
+  }
+  
