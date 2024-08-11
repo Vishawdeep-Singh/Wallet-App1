@@ -14,7 +14,7 @@ const Input: React.FC<InputProps> = ({ name, ...props }) => {
      placeholder={props.placeholder}
      onChange={props.onChange}
      required
-      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#8869f5] focus:border-[#8869f5] outline-[#8869f5] sm:text-sm"
     whileFocus={{scaleY:1.2,scaleZ:1.3}}
     ></motion.input>
   );

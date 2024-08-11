@@ -17,6 +17,14 @@ export const SignInSchema = z.object({
 
   });
 
+ export const paymentInformationSchema = z.object({
+  paymentId:z.string().min(1,"Payment Id is required"),
+    token: z.string().min(1, "Token is required"),
+    userId: z.string().min(1, "User ID is required"),
+    amount: z.string().regex(/^\d+(\.\d{1,2})?$/, "Amount must be a valid number"),
+});
+
+export type paymentInformationType = z.infer<typeof paymentInformationSchema>
 
   export type SignUpType = z.infer<typeof SignUpSchema>
   export type SignInType = z.infer<typeof SignInSchema>

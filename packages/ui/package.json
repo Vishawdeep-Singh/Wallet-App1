@@ -9,7 +9,11 @@
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx",
     "./label": "./src/label.tsx",
-    "./input": "./src/input.tsx"
+    "./input": "./src/input.tsx",
+    "./card1":"./src/card1.tsx",
+    "./center":"./src/center.tsx",
+    "./select":"./src/Select.tsx",
+    "./textInput":"./src/textInput.tsx"
     
   },
   "scripts": {

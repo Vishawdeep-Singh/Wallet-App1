@@ -44,12 +44,13 @@ export default function SignInComponent() {
   const handleSignInWithEmail = async () => {
     setLoading(true);
     SetError(null);
+    
     try {
       const res = await signIn("credentials", {
         phone: formData.number,
         password: formData.password,
         redirect: false,
-        callbackUrl:"/"
+        callbackUrl:"/dashboard"
        
       });
       console.log(res)
@@ -68,7 +69,7 @@ export default function SignInComponent() {
             });
       } 
       else{
-        router.push('/')
+        router.push('/dashboard')
       }
     } catch (error) {
       SetError("Error signing in with Phone");
@@ -82,7 +83,7 @@ export default function SignInComponent() {
 
  
   return (
-    <><Appbar children={undefined}></Appbar><div className="flex min-h-screen flex-col">
+    <><div className="bg-[#faf3f4] flex min-h-screen flex-col">
 
       
       <main className="flex flex-1 flex-col items-center justify-center px-6 py-8 sm:px-8 md:px-10">

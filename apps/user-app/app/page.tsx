@@ -12,8 +12,8 @@ import {ImageMotion} from "@repo/ui/image-motion"
 
 export default function LandingPage() {
  
-       return<div className="">
-         <Appbar  children={undefined}></Appbar>
+       return<div className="bg-[#faf3f4]">
+         
 
          <div className=" srcoll-smooth overflow-y-auto relative">
           <div className="bg-[#DEEFFF] font-normal w-[70%] text-8xl h-[700px] p-24 ml-24 mr-[316px] mt-24 rounded-[2rem]">
@@ -25,7 +25,7 @@ export default function LandingPage() {
            </button>
             </div>
          
-          <ImageMotion children={undefined}></ImageMotion>
+          <ImageMotion src={"/people.jpg"} isMainImage={true}></ImageMotion>
     
           </div>
           
@@ -35,7 +35,7 @@ export default function LandingPage() {
           <div className="p-20 mt-64  flex ">
 
             <div className="flex-shrink-0">
-              <img src="/13429923.jpg" className="rounded-3xl w-[495px] h-[500px]"></img>
+              <ImageMotion src={"/13429923.jpg"} isMainImage={false}></ImageMotion>
             </div>
 
             <div className=" flex flex-col justify-evenly ml-28 w-[40%] h-[500px] ml-25">
@@ -66,7 +66,7 @@ export default function LandingPage() {
             </div>
 
             <div className="flex-shrink-0">
-              <img src="/1307837.jpg" className="rounded-3xl w-[495px] h-[500px]"></img>
+              <ImageMotion src={"/1307837.jpg"} isMainImage={false}></ImageMotion>
             </div>
 
 
@@ -82,7 +82,7 @@ export default function LandingPage() {
           <div className="p-20 mt-32 flex ">
 
             <div className="flex-shrink-0">
-              <img src="/Hand.jpg" className="rounded-3xl w-[495px] h-[500px]"></img>
+              <ImageMotion src={"/Hand.jpg"} isMainImage={false}></ImageMotion>
             </div>
 
             <div className=" flex flex-col justify-evenly ml-28 w-[40%] h-[500px] ml-25">
@@ -116,7 +116,7 @@ export default function LandingPage() {
             </div>
 
             <div className="flex-shrink-0">
-              <img src="/Portrait.jpg" className="rounded-3xl w-[495px] h-[500px]"></img>
+              <ImageMotion src={"/Portrait.jpg"} isMainImage={false}></ImageMotion>
             </div>
 
 

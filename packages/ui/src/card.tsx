@@ -15,7 +15,7 @@ export function Card({
   return (
     
     <motion.div
-    className="rounded-lg  p-10 shadow-lg border-sky-100 border-8"
+    className="rounded-lg  p-10 shadow-lg border-[#c39def] border-8"
    
     initial={{ opacity: 0, y: 50 ,scale:0.7}}
         animate={{ opacity: 1, y: 0,scale:1 }}

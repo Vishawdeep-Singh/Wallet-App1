@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "../providers";
 import { ToastContainer, toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Appbar } from "@repo/ui/appbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,8 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+             <Providers>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Providers>
+ 
         <ToastContainer
 position="top-right"
 autoClose={50000}
@@ -43,10 +45,13 @@ theme="light"
 />
 {/* Same as */}
 <ToastContainer />
+<span><Appbar></Appbar></span>
+
           {children}
-        </Providers>
+      
         
       </body>
+      </Providers>
     </html>
   );
 }

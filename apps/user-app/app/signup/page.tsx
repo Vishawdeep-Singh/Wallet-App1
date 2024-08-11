@@ -114,7 +114,7 @@ export default function SignUpComponent() {
 
  
   return (
-    <><Appbar children={undefined}></Appbar><div className="flex min-h-screen flex-col">
+    <><div className=" bg-[#faf3f4] flex min-h-screen flex-col">
 
       <main className="flex flex-1 flex-col items-center justify-center px-6 py-8 mt-20 sm:px-8 md:px-10">
         <div className="mx-auto max-w-md space-y-6">

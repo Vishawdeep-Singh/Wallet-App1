@@ -7,7 +7,7 @@ import { Skeleton } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 
-export const Appbar = ({ children }: { children: React.ReactNode }) => {
+export const Appbar = () => {
   const session = useSession();
   const router = useRouter();
  
@@ -28,18 +28,16 @@ export const Appbar = ({ children }: { children: React.ReactNode }) => {
 
   
 
-  return (
+  return <>
     <motion.div
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ ease: "easeOut", duration: 1 }}
-      className="h-16 p-7 flex bg-slate-100 items-center w-[100%] z-20 fixed top-0 justify-between"
+   
+      className="h-16 p-7 flex bg-[#f9f7f6] border-b-[1px] items-center w-[100%] z-20 fixed top-0 justify-between"
     >
       <div onClick={()=>{
         router.push("/")
       }} className="flex space-x-4 cursor-pointer items-center">
-        <FaWallet size={45} />
-        <div className="text-3xl font-mono font-extrabold text-black">
+        <FaWallet size={45} color="#5640d7" />
+        <div className="text-3xl font-mono font-extrabold text-[#5640d7]">
           Vault
         </div>
       </div>
@@ -51,7 +49,7 @@ export const Appbar = ({ children }: { children: React.ReactNode }) => {
         onClick={()=>{
           router.push('/signin')
         }}
-        className=" bg-white text-black border-[1px] rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className=" bg-[#5741d7] text-white border-[1px] rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         whileHover={{ scale: 1.1 }}
       >
         Sign In
@@ -60,7 +58,7 @@ export const Appbar = ({ children }: { children: React.ReactNode }) => {
          onClick={()=>{
           router.push('/signup')
         }}
-        className=" bg-blue-600 text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         whileHover={{ scale: 1.1 }}
       >
         Sign Up
@@ -69,10 +67,10 @@ export const Appbar = ({ children }: { children: React.ReactNode }) => {
 
       {session.status==="authenticated" &&   <motion.button
         onClick={async ()=>{
-          await signOut({ redirect: false }); // Perform sign-out action
+          await signOut({ redirect: false ,callbackUrl:"/" }); // Perform sign-out action
       router.push("/"); // Redirect after sign-out
         }}
-        className=" bg-white text-black border-[1px] rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className="  bg-[#5741d7] text-white border-[1px] rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         whileHover={{ scale: 1.1 }}
       >
         Sign Out
@@ -102,7 +100,7 @@ export const Appbar = ({ children }: { children: React.ReactNode }) => {
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
-              fill="currentColor"
+              fill="#5640d7"
               viewBox="0 0 24 24"
             >
               <path
@@ -116,7 +114,7 @@ export const Appbar = ({ children }: { children: React.ReactNode }) => {
 
       
           <motion.ul
-            className={`flex flex-col bg-slate-100  rounded-lg absolute top-[4.5rem] right-2  w-64 h-32 overflow-hidden`}
+            className={`flex flex-col bg-white border-2 text-slate-500 text-sm font-semibold rounded-lg absolute top-[4rem] right-2  w-64 h-32 overflow-hidden`}
             variants={{
               open: {
                 clipPath: "inset(0% 0% 0% 0% round 10px)",
@@ -139,9 +137,9 @@ export const Appbar = ({ children }: { children: React.ReactNode }) => {
             }}
             style={{ pointerEvents: isOpen ? "auto" : "none" }}
           >
-            <motion.li className="w-full p-2 font-bold text-left hover:bg-slate-200" variants={itemVariants}>Name : {session.data.user?.name}</motion.li>
-            <motion.li className="w-full p-2 font-bold  text-left hover:bg-slate-200" variants={itemVariants}>Email : {session.data.user?.email}</motion.li>
-            <motion.li className="w-full p-2 font-bold  text-left hover:bg-slate-200" variants={itemVariants}>Phone : {session.data.user?.number}</motion.li>
+            <motion.li className="w-full p-2 text-left hover:bg-slate-200" variants={itemVariants}>Name : {session.data.user?.name}</motion.li>
+            <motion.li className="w-full p-2   text-left hover:bg-slate-200" variants={itemVariants}>Email : {session.data.user?.email}</motion.li>
+            <motion.li className="w-full p-2  text-left hover:bg-slate-200" variants={itemVariants}>Phone : {session.data.user?.number}</motion.li>
            
           </motion.ul>
       
@@ -151,5 +149,5 @@ export const Appbar = ({ children }: { children: React.ReactNode }) => {
 
       
     </motion.div>
-  );
+    </>
 };
