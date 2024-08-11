@@ -28,3 +28,15 @@ jobs:
 
     - name: Verify Pushed Image
       run: docker pull vishawdeepsingh602/user-app:latest  # Replace with your Docker Hub username and repository
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          sudo docker pull vishawdeepsingh602/user-app:latest
+          sudo docker stop user-app || true
+          sudo docker rm user-app || true
+          sudo docker run -d --name user-app -p 3005:3000 vishawdeepsingh602/user-app:latest
