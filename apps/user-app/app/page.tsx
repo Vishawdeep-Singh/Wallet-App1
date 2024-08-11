@@ -1,12 +1,4 @@
 
-import Image from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
-import { useBalance } from "@repo/store/useBalance";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { FaWallet } from "react-icons/fa6";
-import { Appbar } from "@repo/ui/appbar";
-import { motion } from "framer-motion";
 import "./page.module.css"
 import {ImageMotion} from "@repo/ui/image-motion"
 

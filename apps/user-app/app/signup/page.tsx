@@ -4,19 +4,19 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 "use client"
-import Link from "next/link"
+
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@repo/ui/card"
 import  Label  from "@repo/ui/label"
 import  Input  from "@repo/ui/input"
 import { Button } from "@repo/ui/button"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
-import bcrypt from "bcrypt";
+import {  useState } from "react"
+
 import {SignUpType} from "@repo/zod-validation"
 import { signup } from "../../actions/signup"
-import { Bounce, toast, ToastContainer } from "react-toastify"
+import { Bounce, toast } from "react-toastify"
 import { useRouter } from "next/navigation";
-import { Appbar } from "@repo/ui/appbar"
+
 
 
 
@@ -61,7 +61,7 @@ export default function SignUpComponent() {
      }
      else{
       const errors = response?.errors;
-      const mappedErrors = Object.entries(errors!).map(([key, messages]) => {
+      const mappedErrors = Object.entries(errors!).map(([_key, messages]) => {
        return `${messages.join(', ')}`;
      });
      mappedErrors.map((err)=>{
@@ -166,23 +166,5 @@ export default function SignUpComponent() {
   )
 }
 
-function DollarSignIcon(props:any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="12" x2="12" y1="2" y2="22" />
-      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-    </svg>
-  )
-}
+
 

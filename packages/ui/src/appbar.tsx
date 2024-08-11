@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 
 export const Appbar = () => {
-  const session = useSession();
+  const session:any = useSession();
   const router = useRouter();
  
 

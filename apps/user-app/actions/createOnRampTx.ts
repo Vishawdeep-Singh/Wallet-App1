@@ -6,7 +6,7 @@ import { authOptions } from "../app/lib/auth";
 
 
 export async function  createOnRamp(provider:string,amount:number){
-const session = await getServerSession(authOptions);
+const session:any = await getServerSession(authOptions);
 
 if(!session?.user || !session.user?.id){
     return {

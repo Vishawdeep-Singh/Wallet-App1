@@ -1,14 +1,11 @@
 import db from "@repo/db/client";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
-import { NextAuthOptions, User } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
 // Define the type for credentials
-interface Credentials {
-  phone: string;
-  password: string;
-}
+
 
 // Define the type for the session
 interface SessionUser {
@@ -16,6 +13,12 @@ interface SessionUser {
     email: string;
     image: string | undefined; // Optional as it can be undefined
     id?: string;    // Optional as it can be undefined
+  }
+  interface User{
+    id:string;
+    name:string;
+    email:string;
+    number:string
   }
   
   interface Session {
@@ -31,10 +34,6 @@ interface UserToken {
     jti: string;
   }
 
-  interface SessionProps {
-    session : Session;
-    token:UserToken
-  }
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -75,7 +74,7 @@ export const authOptions: NextAuthOptions = {
   ],
   secret: process.env.JWT_SECRET || "secret",
   callbacks: {
-    async jwt({ token, user }:any) {
+    async jwt({ token, user }:{token:JWT,user:any}) {
         if (user) {
           // Log the user object to confirm it contains the number field
           console.log('User in JWT callback:', user);

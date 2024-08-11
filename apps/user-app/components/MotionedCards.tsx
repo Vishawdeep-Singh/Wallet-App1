@@ -1,5 +1,5 @@
-"use client"
-import { duration } from "@mui/material";
+"use client";
+
 import { AddMoney } from "./addMoneycard"
 import { Balance } from "./Balance"
 import { OnRampTransactions } from "./onRampTransactions"
@@ -25,7 +25,7 @@ const container = {
     }
   };
   interface TransactionFunctions {
-   balance:Balance,
+   balance:BalanceProps,
    transactions:OnRampTransaction[]
 }
 
@@ -36,7 +36,7 @@ interface OnRampTransaction {
    status:  OnRampStatus1
     provider: string;
 }
-interface Balance {
+interface BalanceProps {
     amount: number;
     locked: number;
 }

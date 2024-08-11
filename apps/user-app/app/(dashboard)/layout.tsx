@@ -1,7 +1,4 @@
 import { SidebarItem } from "../../components/sidebarItem"
-import { getServerSession } from "next-auth";
-import { redirect } from 'next/navigation'
-import { authOptions } from "../lib/auth";
 import { RiP2pFill } from "react-icons/ri";
 
 

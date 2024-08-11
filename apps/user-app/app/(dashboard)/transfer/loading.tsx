@@ -1,4 +1,4 @@
-import { BounceLoader } from "react-spinners";
+
 import ClipLoader from "react-spinners/ClipLoader";
 
 
