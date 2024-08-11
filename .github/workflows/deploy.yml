@@ -27,4 +27,4 @@ jobs:
         tags: vishawdeepsingh602/user-app:latest  # Replace with your Docker Hub username and repository
 
     - name: Verify Pushed Image
-      run: vishawdeepsingh602/user-app:latest  # Replace with your Docker Hub username and repository
+      run: docker pull vishawdeepsingh602/user-app:latest  # Replace with your Docker Hub username and repository
