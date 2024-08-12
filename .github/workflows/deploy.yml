@@ -39,4 +39,4 @@ jobs:
           sudo docker pull vishawdeepsingh602/user-app:latest
           sudo docker stop user-app || true
           sudo docker rm user-app || true
-          sudo docker run -d --name user-app -p 3005:3000 vishawdeepsingh602/user-app:latest
+          sudo docker run -e DATABASE_URL=${{secrets.DB_URL}} -e JWT_SECRET=${{secrets.JWT_SECRET}} -d --name user-app -p 3005:3000 vishawdeepsingh602/user-app:latest
