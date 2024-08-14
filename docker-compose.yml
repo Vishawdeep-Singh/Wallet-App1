@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  user-app:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.devUserApp
+    image: user-app-test
+    ports:
+      - "3000:3001"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - DATABASE_URL=postgresql://postgres:secret@db:5432/postgres
+      - JWT_SECRET=secret
+    volumes:
+      - ./apps:/usr/src/app/apps
+      - ./packages:/usr/src/app/packages
+      - ./config:/usr/src/app/config
+    container_name: user-app-test-container
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: postgres
+    ports:
+      - "5431:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

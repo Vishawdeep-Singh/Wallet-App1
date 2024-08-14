@@ -15,6 +15,7 @@
     "@repo/db": "*",
     "@repo/store": "*",
     "@repo/ui": "*",
+    "@repo/interfaces": "*",
     "@repo/zod-validation": "*",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",

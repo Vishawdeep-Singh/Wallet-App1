@@ -1,30 +1,32 @@
 import db from "@repo/db/client";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
+import { Session } from 'next-auth';
+import { ServerSessionUser } from "@repo/interfaces/interfaces";
 
 // Define the type for credentials
 
-
+interface ExtendedSession extends Session {
+  user: ServerSessionUser;
+}
 // Define the type for the session
 interface SessionUser {
     name: string;
     email: string;
-    image: string | undefined; // Optional as it can be undefined
+    image?: string | undefined; // Optional as it can be undefined
     id?: string;    // Optional as it can be undefined
+    number?:string
   }
-  interface User{
+  interface User1{
     id:string;
     name:string;
     email:string;
     number:string
   }
   
-  interface Session {
-    user: SessionUser;
-    expires: string; // ISO 8601 date string
-  }
+  
 interface UserToken {
     name: string;
     email: string;
@@ -87,17 +89,20 @@ export const authOptions: NextAuthOptions = {
         console.log('Token in JWT callback:', token);
         return token;
       },
-    async session({ session, token}: { session: any; token: JWT }) {
+    async session({ session, token}) {
+      
+      const newSession: ExtendedSession = session as ExtendedSession;
       // Attach the user ID to the session object
       if (token) {
-        session.user = {
+        newSession.user = {
           id: token.sub as string,
           name: token.name as string,
           email: token.email as string,
           number: token.number as string // Ensure the number field is included in the session
         };
       }
-      return session;
+      console.log("New Session        ",newSession)
+      return newSession;
     },
     
   },

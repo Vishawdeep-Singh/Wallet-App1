@@ -3,10 +3,11 @@
 import prisma from "@repo/db/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../app/lib/auth";
+import { ServerSession } from "@repo/interfaces/interfaces";
 
 
 export async function  createOnRamp(provider:string,amount:number){
-const session:any = await getServerSession(authOptions);
+const session:ServerSession | null = await getServerSession(authOptions);
 
 if(!session?.user || !session.user?.id){
     return {

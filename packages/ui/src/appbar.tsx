@@ -5,10 +5,11 @@ import { FaWallet } from "react-icons/fa6";
 import { useSession , signOut} from "next-auth/react";
 import { Skeleton } from "@mui/material";
 import { useRouter } from "next/navigation";
-
+import {ClientSession} from "@repo/interfaces/interfaces"
 
 export const Appbar = () => {
-  const session:any = useSession();
+  const session:ClientSession = useSession();
+  
   const router = useRouter();
  
 
@@ -137,9 +138,9 @@ export const Appbar = () => {
             }}
             style={{ pointerEvents: isOpen ? "auto" : "none" }}
           >
-            <motion.li className="w-full p-2 text-left hover:bg-slate-200" variants={itemVariants}>Name : {session.data.user?.name}</motion.li>
-            <motion.li className="w-full p-2   text-left hover:bg-slate-200" variants={itemVariants}>Email : {session.data.user?.email}</motion.li>
-            <motion.li className="w-full p-2  text-left hover:bg-slate-200" variants={itemVariants}>Phone : {session.data.user?.number}</motion.li>
+            <motion.li className="w-full p-2 text-left hover:bg-slate-200" variants={itemVariants}>Name : {session.data?.user?.name}</motion.li>
+            <motion.li className="w-full p-2   text-left hover:bg-slate-200" variants={itemVariants}>Email : {session.data?.user?.email}</motion.li>
+            <motion.li className="w-full p-2  text-left hover:bg-slate-200" variants={itemVariants}>Phone : {session.data?.user?.number}</motion.li>
            
           </motion.ul>
       
