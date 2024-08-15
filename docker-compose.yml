@@ -7,7 +7,9 @@ services:
       dockerfile: ./docker/Dockerfile.devUserApp
     image: user-app-test
     ports:
-      - "3000:3001"
+      - "3000:3000"
+      - "3001:3001"
+      - "3002:3002"
     environment:
       - CHOKIDAR_USEPOLLING=true
       - DATABASE_URL=postgresql://postgres:secret@db:5432/postgres
@@ -17,7 +19,8 @@ services:
       - ./packages:/usr/src/app/packages
       - ./config:/usr/src/app/config
     container_name: user-app-test-container
-
+  
+  
   db:
     image: postgres
     container_name: db

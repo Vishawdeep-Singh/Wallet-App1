@@ -6,15 +6,17 @@ import { Select } from "@repo/ui/select";
 import {  useState } from "react";
 import { TextInput } from "@repo/ui/textInput";
 import { createOnRamp } from "../actions/createOnRampTx";
+import { useRouter } from 'next/navigation'
 
 const SUPPORTED_BANKS = [{
-    name: "HDFC Bank",
+    name: "Dummy Bank",
     redirectUrl: "https://netbanking.hdfcbank.com"
 }, {
-    name: "Axis Bank",
+    name: "Dummy Bank 1",
     redirectUrl: "https://www.axisbank.com/"
 }];
 export const AddMoney = ()=>{
+    const router = useRouter()
     const [redirectUrl, setRedirectUrl] = useState(SUPPORTED_BANKS[0]?.redirectUrl);
     const [provider,setProvider]=useState(SUPPORTED_BANKS[0]?.name || "");
     const [value, setValue] = useState(0)
@@ -40,8 +42,13 @@ export const AddMoney = ()=>{
         }))} />
         <div className="flex justify-center pt-4">
             <Button onClick={async () => {
-                await createOnRamp(provider, value)
-                    window.location.href = redirectUrl || "";
+               const response= await createOnRamp(provider, value)
+               console.log(response.token)
+               if(response.message==="Done"){
+                const token = encodeURIComponent(response.token as string)
+                router.push(`http://localhost:3001/bank/${response.txId}?token=${token}&amount=${value}`)
+               }
+                   
                 } }  appName={""}>
             Add Money
             </Button>

@@ -5,6 +5,7 @@ export interface ServerSessionUser{
         email?: string | null | undefined;
         image?: string | null | undefined;
         number?: string | null | undefined;
+        accessToken: string | null | undefined;
   
 } 
 

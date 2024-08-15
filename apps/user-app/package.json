@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo --port 3001",
+    "dev": "next dev --turbo --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -13,13 +13,15 @@
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.6",
     "@repo/db": "*",
+    "@repo/interfaces": "*",
     "@repo/store": "*",
     "@repo/ui": "*",
-    "@repo/interfaces": "*",
     "@repo/zod-validation": "*",
     "@types/bcrypt": "^5.0.2",
+    "axios": "^1.7.4",
     "bcrypt": "^5.1.1",
     "framer-motion": "^11.3.21",
+    "jsonwebtoken": "^9.0.2",
     "next": "^14.0.0",
     "next-auth": "^4.24.7",
     "react": "^18.2.0",
@@ -33,6 +35,7 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

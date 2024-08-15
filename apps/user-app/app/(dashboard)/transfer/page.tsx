@@ -5,10 +5,10 @@ import { redirect } from 'next/navigation'
 import { authOptions } from "../../lib/auth";
 import { MotionCards } from "../../../components/MotionedCards";
 import prisma from "@repo/db/client";
-import { ServerSession } from "@repo/interfaces/interfaces";
+import { ServerSessionUser } from "@repo/interfaces/interfaces";
 
 async function getBalance() {
-    const session:ServerSession | null = await getServerSession(authOptions);
+    const session:{user:ServerSessionUser} | null = await getServerSession(authOptions);
     const balance = await prisma.balance.findFirst({
         where: {
             userId: Number(session?.user?.id)
@@ -22,7 +22,7 @@ async function getBalance() {
     }
 }
 async function getOnRampTransactions() {
-    const session:ServerSession | null = await getServerSession(authOptions);
+    const session:{user:ServerSessionUser} | null = await getServerSession(authOptions);
     const txns = await prisma.onRampTransaction.findMany({
         where: {
             userId: Number(session?.user?.id)
@@ -36,7 +36,7 @@ async function getOnRampTransactions() {
     }))
 }
 export default async function Transactions() {
-    const session:ServerSession | null = await getServerSession(authOptions);
+    const session:{user:ServerSessionUser} | null = await getServerSession(authOptions);
     if (!session?.user) {
         redirect('/signin')
     } 

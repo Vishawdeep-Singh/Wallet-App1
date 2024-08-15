@@ -5,36 +5,15 @@ import { NextAuthOptions, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import { Session } from 'next-auth';
 import { ServerSessionUser } from "@repo/interfaces/interfaces";
+import jwt from "jsonwebtoken"
 
 // Define the type for credentials
 
 interface ExtendedSession extends Session {
   user: ServerSessionUser;
 }
-// Define the type for the session
-interface SessionUser {
-    name: string;
-    email: string;
-    image?: string | undefined; // Optional as it can be undefined
-    id?: string;    // Optional as it can be undefined
-    number?:string
-  }
-  interface User1{
-    id:string;
-    name:string;
-    email:string;
-    number:string
-  }
-  
-  
-interface UserToken {
-    name: string;
-    email: string;
-    sub: string;
-    iat: number;
-    exp: number;
-    jti: string;
-  }
+
+
 
 
 export const authOptions: NextAuthOptions = {
@@ -81,10 +60,14 @@ export const authOptions: NextAuthOptions = {
           // Log the user object to confirm it contains the number field
           console.log('User in JWT callback:', user);
           
+
+          const jwtToken=jwt.sign({ sub: user.id, name: user.name, email: user.email, number: user.number },process.env.JWT_SECRET as string)
+          
           token.sub = user.id;
           token.name = user.name;
           token.email = user.email;
-          token.number = user.number; // Add number to the token
+          token.number = user.number;
+          token.accessToken=jwtToken;
         }
         console.log('Token in JWT callback:', token);
         return token;
@@ -92,13 +75,15 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token}) {
       
       const newSession: ExtendedSession = session as ExtendedSession;
-      // Attach the user ID to the session object
+
       if (token) {
         newSession.user = {
           id: token.sub as string,
           name: token.name as string,
           email: token.email as string,
-          number: token.number as string // Ensure the number field is included in the session
+          number: token.number as string,
+          accessToken:token.accessToken as string
+           
         };
       }
       console.log("New Session        ",newSession)

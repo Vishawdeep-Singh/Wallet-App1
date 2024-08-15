@@ -6,11 +6,13 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "db:generate":"cd packages/db && npx prisma generate && cd ../../",
+    "db:generate": "cd packages/db && npx prisma generate && cd ../../",
     "start-user-app": "cd ./apps/user-app && npm run start",
-    "build:user-app":"turbo run build --filter=user-app",
-    "dev:user-app": "cd ./apps/user-app && npm run dev"
- 
+    "build:user-app": "turbo run build --filter=user-app",
+    "dev:user-app": "cd ./apps/user-app && npm run dev",
+    "dev:bank-app": "cd ./apps/hdfc-bank-server && npm run dev",
+    "dev:webhook": "cd ./apps/bank-webhook && npm run dev",
+    "dev:all": "cd ./apps/bank-webhook && npm run dev && cd ../../ & cd ./apps/hdfc-bank-server && npm run dev && cd ../../ & cd ./apps/user-app && npm run dev && cd ../../ &"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -25,4 +27,5 @@
     "apps/*",
     "packages/*"
   ]
+
 }

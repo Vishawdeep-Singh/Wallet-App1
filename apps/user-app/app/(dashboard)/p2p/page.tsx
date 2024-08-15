@@ -6,14 +6,14 @@ import { SendMoneyp2p } from "../../../components/sendMoneyp2p";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import prisma from "@repo/db/client";
-import { ServerSession } from "@repo/interfaces/interfaces";
+import { ServerSessionUser } from "@repo/interfaces/interfaces";
 
 
 
 
 
 async function getP2PTx(){
-    const session:ServerSession | null = await getServerSession(authOptions);
+    const session:{user:ServerSessionUser}|null = await getServerSession(authOptions);
     const txns = await prisma.user.findUnique({
         where: {
             id: Number(session?.user?.id)
@@ -34,7 +34,9 @@ async function getP2PTx(){
 export default async function (){
     
     const txs=await getP2PTx();
-    const session:ServerSession | null = await getServerSession(authOptions);
+    const session:{
+        user:ServerSessionUser
+    }|null = await getServerSession(authOptions);
    const alltxns=  txs?.sentTransfers.concat(txs.receivedTransfers);
    const sortedTxns = alltxns?.sort((a:any, b:any) => {
     // Convert timestamps to Date objects and compare

@@ -2,12 +2,19 @@ import db from "@repo/db/client";
 import express from "express"
 import { paymentInformationSchema,paymentInformationType } from "@repo/zod-validation";
 import dotenv from 'dotenv';
+import cors from "cors"
 dotenv.config()
 
 
 const app = express();
 app.use(express.json())
 
+app.use(cors({
+    origin: 'http://localhost:3001', // Allow requests from this origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true, // Enable credentials (cookies, authorization headers, etc.)
+}));
 
 
 app.post("/hdfcWebhook", async (req, res) => {
@@ -77,6 +84,6 @@ app.post("/hdfcWebhook", async (req, res) => {
     // Update balance in db, add txn
 })
 
-app.listen(3003,()=>{
+app.listen(3002,()=>{
     console.log("Server is listening")
 });
