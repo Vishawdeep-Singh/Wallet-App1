@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
              <Providers>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body  className={`${geistSans.variable} ${geistMono.variable}`}>
  
         <ToastContainer
 position="top-right"
@@ -46,7 +46,7 @@ theme="light"
 {/* Same as */}
 <ToastContainer />
 <span><Appbar></Appbar></span>
-
+    
           {children}
       
         

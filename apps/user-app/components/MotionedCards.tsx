@@ -5,6 +5,8 @@ import { Balance } from "./Balance"
 import { OnRampTransactions } from "./onRampTransactions"
 import {motion} from "framer-motion"
 import  {OnRampStatus1} from "@repo/db/enum"
+import { WithdrawMoney } from "./withdrawMoneyCard";
+import { OffRampTransactions } from "./offRampTransactions";
 const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
@@ -26,7 +28,8 @@ const container = {
   };
   interface TransactionFunctions {
    balance:BalanceProps,
-   transactions:OnRampTransaction[]
+   transactions:OnRampTransaction[],
+   isAdd:boolean
 }
 
 
@@ -40,7 +43,7 @@ interface BalanceProps {
     amount: number;
     locked: number;
 }
-export const  MotionCards=async({balance,transactions}:TransactionFunctions)=>{
+export const  MotionCards=async({balance,transactions,isAdd}:TransactionFunctions)=>{
 
 
 
@@ -53,14 +56,15 @@ export const  MotionCards=async({balance,transactions}:TransactionFunctions)=>{
     animate="visible"
     className="container grid grid-cols-1 gap-4 md:grid-cols-2 p-4">
     <motion.div variants={item} className="item">
-        <AddMoney />
+       {isAdd ? <AddMoney></AddMoney> : <WithdrawMoney></WithdrawMoney>}
+       
     </motion.div>
     <motion.div variants={item} className="item">
         <Balance amount={balance.amount} locked={balance.locked}></Balance>
        
     </motion.div>
     <motion.div variants={item} className="item pt-4">
-        <OnRampTransactions transactions={transactions}/>
+        {isAdd? <OnRampTransactions transactions={transactions}/> : <OffRampTransactions transactions={transactions}></OffRampTransactions>}
       </motion.div>
 
     

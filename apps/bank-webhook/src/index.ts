@@ -83,6 +83,72 @@ app.post("/hdfcWebhook", async (req, res) => {
     }
     // Update balance in db, add txn
 })
+app.post("/hdfcWebhook/withdraw", async (req, res) => {
+    //TODO: Add zod validation here?
+    const paymentInformation: paymentInformationType = {
+        paymentId:req.body.paymentId,
+        token: req.body.token,
+        userId: req.body.user_identifier,
+        amount: req.body.amount
+    };
+
+    const validation =  paymentInformationSchema.safeParse(paymentInformation)
+    if (!validation.success) {
+        return res.status(400).json({
+            message: "Invalid request data",
+            errors: validation.error.flatten().fieldErrors
+        });
+    }
+  
+
+    try { const isProcessing = await db.offRampTransaction.findUnique({
+        where: { id: Number(paymentInformation.paymentId) },
+    });
+
+    if (!isProcessing) {
+        return res.status(404).json({
+            message: "Payment not found",
+        });
+    }
+
+    if (isProcessing.status !== "Processing") {
+        return res.status(409).json({
+            message: "Payment is already succeeded or failed",
+        });
+    }
+        await db.$transaction([
+            db.balance.updateMany({
+                where: {
+                    userId: Number(paymentInformation.userId)
+                },
+                data: {
+                    amount: {
+                        // You can also get this from your DB
+                        decrement: Number(paymentInformation.amount)
+                    }
+                }
+            }),
+            db.offRampTransaction.updateMany({
+                where: {
+                    token: paymentInformation.token
+                },
+                data: {
+                    status: "Success",
+                }
+            })
+        ]);
+
+        res.json({
+            message: "Captured-off-ramp"
+        })
+    } catch(e) {
+        console.error(e);
+        res.status(411).json({
+            message: "Error while processing offRampwebhook"
+        })
+    }
+    // Update balance in db, add txn
+})
 
 app.listen(3002,()=>{
     console.log("Server is listening")

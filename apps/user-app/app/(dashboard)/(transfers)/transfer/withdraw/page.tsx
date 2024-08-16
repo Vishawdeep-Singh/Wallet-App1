@@ -2,8 +2,8 @@
 
 import { getServerSession } from "next-auth";
 import { redirect } from 'next/navigation'
-import { authOptions } from "../../lib/auth";
-import { MotionCards } from "../../../components/MotionedCards";
+import { authOptions } from "../../../../lib/auth";
+import { MotionCards } from "../../../../../components/MotionedCards";
 import prisma from "@repo/db/client";
 import { ServerSessionUser } from "@repo/interfaces/interfaces";
 
@@ -21,9 +21,9 @@ async function getBalance() {
         locked: balance?.locked || 0
     }
 }
-async function getOnRampTransactions() {
+async function getOffRampTransactions() {
     const session:{user:ServerSessionUser} | null = await getServerSession(authOptions);
-    const txns = await prisma.onRampTransaction.findMany({
+    const txns = await prisma.offRampTransaction.findMany({
         where: {
             userId: Number(session?.user?.id)
         }
@@ -35,22 +35,20 @@ async function getOnRampTransactions() {
         provider: t.provider
     }))
 }
-export default async function Transactions() {
+export default async function WithdDraw() {
     const session:{user:ServerSessionUser} | null = await getServerSession(authOptions);
     if (!session?.user) {
         redirect('/signin')
     } 
     const balance = await getBalance();
-    const transactions=await getOnRampTransactions();
+    const transactions=await getOffRampTransactions();
     
     
     return <div className="w-screen">
 
 
-    <div className="text-4xl text-[#5640d7] pt-28 p-10 font-bold">
-        Transfer
-    </div>
-    <MotionCards balance={balance} transactions={transactions}></MotionCards>
+   
+    <MotionCards isAdd={false} balance={balance} transactions={transactions}></MotionCards>
    
     </div>
 }

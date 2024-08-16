@@ -4,7 +4,7 @@ import { useState } from 'react';
 import jwt from "jsonwebtoken"
 import axios from "axios"
 import { useRouter } from 'next/navigation';
-export default function CardForm({tokenInfo,txId,token,amount}:{tokenInfo:any,txId:string,token:string,amount:string}) {
+export default function CardForm2({tokenInfo,txId,token,amount}:{tokenInfo:any,txId:string,token:string,amount:string}) {
   const [cardNumber, setCardNumber] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -15,11 +15,12 @@ export default function CardForm({tokenInfo,txId,token,amount}:{tokenInfo:any,tx
 
   return (
     <div className="max-w-md mx-auto p-4 mt-32 bg-white border border-gray-200 rounded-lg shadow-md">
-      <h1>Withdraw from bank</h1>
+        <h1>Add to Bank</h1>
       <h2 className="text-xl font-semibold mb-4">Card Details</h2>
       {error && <div className="text-red-500 mb-4">{error}</div>}
       
         <div className="mb-4">
+            
           <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="cardNumber">
             Card Number
           </label>
@@ -63,7 +64,7 @@ export default function CardForm({tokenInfo,txId,token,amount}:{tokenInfo:any,tx
         </div>
         <button
       onClick={async()=>{
-     const response=await axios.post("http://localhost:3002/hdfcWebhook",{
+     const response=await axios.post("http://localhost:3002/hdfcWebhook/withdraw",{
       paymentId:txId,
       user_identifier:tokenInfo.sub,
       token:token,
@@ -74,8 +75,8 @@ export default function CardForm({tokenInfo,txId,token,amount}:{tokenInfo:any,tx
           'Content-Type': 'application/json'
       }
   })
-  if(response.data.message==="Captured"){
-    router.push("http://localhost:3000/transfer")
+  if(response.data.message==="Captured-off-ramp"){
+    router.push("http://localhost:3000/transfer/withdraw")
   }
     console.log(token,tokenInfo,amount,txId)
       }}
