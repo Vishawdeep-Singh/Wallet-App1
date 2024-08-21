@@ -19,3 +19,12 @@ interface ClientSessionData {
     status: 'authenticated' | 'loading' | 'unauthenticated';
     update: (data: ClientSessionData | null) => void;
   }
+
+  export interface  ServerSessionMerchentUser{
+
+    id?: string | null | undefined;
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+    accessToken?: string | null | undefined;
+  }

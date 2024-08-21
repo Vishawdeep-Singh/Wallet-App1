@@ -1,6 +1,5 @@
-import { SidebarItem } from "../../components/sidebarItem"
-import { RiP2pFill } from "react-icons/ri";
-import { IoQrCodeSharp } from "react-icons/io5";
+import { SidebarItem } from "../../components/sideBar"
+
 
 
 export default function Layout({
@@ -20,10 +19,9 @@ export default function Layout({
         <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
             <div>
                 <SidebarItem href={"/dashboard"} title="Home" icon={<HomeIcon></HomeIcon>}></SidebarItem>
-                <SidebarItem href={"/transfer"} title="Transfer" icon={<TransferIcon/>}></SidebarItem>
+               
                 <SidebarItem href={"/transactions"} title="Transactions" icon={<TransactionsIcon/>}></SidebarItem>
-                <SidebarItem href={"/p2p"} title="P2P" icon={<RiP2pFill size={28}/>}></SidebarItem>
-                <SidebarItem href={"/QR"} title="QR PAY" icon={<IoQrCodeSharp size={28}/>}></SidebarItem>
+              
                
             </div>
         </div>

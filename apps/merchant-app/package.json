@@ -3,16 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev --turbo --port 3003",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@repo/db": "*",
+    "@repo/interfaces": "*",
+    "@repo/store": "*",
     "@repo/ui": "*",
-     "next": "^14.0.0",
+    "@repo/zod-validation": "*",
+    "axios": "^1.7.4",
+    "jsonwebtoken": "^9.0.2",
+    "next": "^14.0.0",
+    "next-auth": "^4.24.7",
     "react": "^18.2.0",
-  "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-qr-code": "^2.0.15"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

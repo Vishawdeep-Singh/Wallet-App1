@@ -64,9 +64,18 @@ export const Appbar = () => {
       >
         Sign Up
       </motion.button>
+      <motion.button
+         onClick={()=>{
+          router.push('http://localhost:3003/api/auth/signin')
+        }}
+        className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        whileHover={{ scale: 1.1 }}
+      >
+        Merchant Login
+      </motion.button>
       </div>}
 
-      {session.status==="authenticated" &&   <motion.button
+      {session.status==="authenticated" && <>  <motion.button
         onClick={async ()=>{
           await signOut({ redirect: false ,callbackUrl:"/" }); // Perform sign-out action
       router.push("/"); // Redirect after sign-out
@@ -75,7 +84,15 @@ export const Appbar = () => {
         whileHover={{ scale: 1.1 }}
       >
         Sign Out
-      </motion.button>}
+      </motion.button> <motion.button
+         onClick={()=>{
+          router.push('http://localhost:3003/api/auth/signin')
+        }}
+        className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        whileHover={{ scale: 1.1 }}
+      >
+        Merchant Login
+      </motion.button></> }
 
       {session.status==="authenticated" && <motion.div
         className="flex flex-col"

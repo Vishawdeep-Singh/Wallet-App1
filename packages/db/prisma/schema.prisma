@@ -24,6 +24,16 @@ model User {
   Balance           Balance[]
    sentTransfers     p2pTransfer[]       @relation(name: "FromUserRelation")
   receivedTransfers p2pTransfer[]       @relation(name: "ToUserRelation")
+  SentMerchantTransfers user2merchantTx[]   @relation(name:"FromUser")
+}
+model Merchant {
+  id          String     @id 
+  email       String?  @unique
+  name        String?
+  OffRampTransaction MerchantOffRampTransaction[]
+  MerchantBalance MerchantBalance[]
+   ReceivedFromUsers user2merchantTx[]   @relation(name:"ToMerchant")
+  
 }
 model OnRampTransaction {
   id        Int          @id @default(autoincrement())
@@ -43,15 +53,38 @@ model OffRampTransaction {
   amount    Int
   startTime DateTime
   userId    Int
+
   user      User         @relation(fields: [userId], references: [id])
+
+}
+model MerchantOffRampTransaction {
+  id        Int          @id @default(autoincrement())
+  status    OnRampStatus
+  token     String       @unique
+  provider  String
+  amount    Int
+  startTime DateTime
+
+  merchantId String
+
+  merchant Merchant      @relation(fields: [merchantId], references: [id])
 }
 
 model Balance {
   id     Int  @id @default(autoincrement())
   userId Int  @unique
+
   amount Int
   locked Int
   user   User @relation(fields: [userId], references: [id])
+
+}
+model MerchantBalance {
+  id     Int  @id @default(autoincrement())
+  merchantId String @unique
+  amount Int
+  locked Int
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
 }
 
 model p2pTransfer {
@@ -62,6 +95,17 @@ model p2pTransfer {
   fromUser   User         @relation(name: "FromUserRelation", fields: [fromUserId], references: [id])
   toUserId   Int
   toUser     User         @relation(name: "ToUserRelation", fields: [toUserId], references: [id])
+}
+
+model user2merchantTx {
+  id Int @id @default(autoincrement())
+  amount Int
+  fromUserId Int
+  fromUser User     @relation(name: "FromUser",fields: [fromUserId], references: [id])
+  toMerchantId String
+  toMerchant Merchant @relation(name: "ToMerchant",fields: [toMerchantId], references: [id])
+  timestamp  DateTime
+  status OnRampStatus
 }
 
 enum AuthType {
