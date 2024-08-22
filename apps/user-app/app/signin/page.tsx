@@ -69,7 +69,22 @@ export default function SignInComponent() {
             });
       } 
       else{
-        router.push('/dashboard')
+        toast.success('You are logged in', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Slide,
+          });
+
+          setTimeout(()=>{
+            router.push('/dashboard')
+          },1000)
+        
       }
     } catch (error) {
       SetError("Error signing in with Phone");

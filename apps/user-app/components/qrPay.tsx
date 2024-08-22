@@ -7,6 +7,7 @@ import { useState } from "react"
 import { UsertoMerchantPay } from "../actions/create_user_to_merchant_tx";
 import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Bounce, toast } from "react-toastify";
 
 export const QRPAY=({id}:{id:string})=>{
     const router = useRouter()
@@ -27,7 +28,33 @@ return <div>
     const response = await UsertoMerchantPay(id,amount);
     setisLoading(false)
     if(response.status==="success"){
-router.push('/dashboard')
+        toast.success(`${response.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
+            setTimeout(() => {
+                router.push('/dashboard');
+            }, 3000); 
+    }
+    else if(response.status==="error"){
+        toast.error(`${response.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
     }
 }} appName="">Send Money</Button>
     </Card1>

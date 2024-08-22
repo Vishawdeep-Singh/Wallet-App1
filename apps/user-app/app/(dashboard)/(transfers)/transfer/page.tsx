@@ -44,7 +44,7 @@ export default async function Add() {
     const transactions=await getOnRampTransactions();
     
     
-    return <div className="w-screen">
+    return <div className="w-full">
 
 
     <MotionCards isAdd={true} balance={balance} transactions={transactions}></MotionCards>

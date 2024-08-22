@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import prisma from "@repo/db/client";
 import { ServerSessionUser } from "@repo/interfaces/interfaces";
+import { MotionP2PTx } from "../../../components/motionTxP2P";
 
 
 
@@ -19,8 +20,19 @@ async function getP2PTx(){
             id: Number(session?.user?.id)
         },
         select:{
-            sentTransfers:true,
-            receivedTransfers:true
+            sentTransfers:{
+                include:{
+                    toUser:true,
+                    fromUser:true
+                }
+            },
+            receivedTransfers:{
+                include:{
+                    toUser:true,
+                    fromUser:true
+                }
+            },
+
         }
         
     });
@@ -52,7 +64,7 @@ export default async function (){
         <SendMoneyp2p></SendMoneyp2p>
      </div>
             
-            <div className="w-[50%]">
+            {/* <div className="w-[50%]">
             <Card1 title="Recent Transactions">
 <div className="pt-2">
     {sortedTxns?.map((t,index) => <div key={index}className="flex justify-between py-3">
@@ -85,7 +97,8 @@ export default async function (){
     </div>)}
 </div>
 </Card1>
-            </div>
+            </div> */}
+            <MotionP2PTx session={session} sortedTxns={sortedTxns}></MotionP2PTx>
         
     </div>
 }

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 import { QrReader } from 'react-qr-reader';
+import { toast, Bounce } from "react-toastify";
 
 interface merchantDetails{
     id:string,
@@ -54,6 +55,17 @@ export const QRSCAN=()=>{
             
            
         } catch (error:any) {
+          toast.error(`${error.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
             console.log('Fetch error:', error.message);
         }
     }

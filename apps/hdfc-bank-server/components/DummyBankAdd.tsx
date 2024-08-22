@@ -4,6 +4,7 @@ import { useState } from 'react';
 import jwt from "jsonwebtoken"
 import axios from "axios"
 import { useRouter } from 'next/navigation';
+import { Bounce, toast } from 'react-toastify';
 export default function CardForm2({tokenInfo,txId,token,amount}:{tokenInfo:any,txId:string,token:string,amount:string}) {
   const [cardNumber, setCardNumber] = useState('');
   const [name, setName] = useState('');
@@ -77,6 +78,19 @@ export default function CardForm2({tokenInfo,txId,token,amount}:{tokenInfo:any,t
   })
   if(response.data.message==="Captured-off-ramp"){
     router.push("http://localhost:3000/transfer/withdraw")
+  }
+  else{
+    toast.error(`${response.data.message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+      });
   }
     console.log(token,tokenInfo,amount,txId)
       }}

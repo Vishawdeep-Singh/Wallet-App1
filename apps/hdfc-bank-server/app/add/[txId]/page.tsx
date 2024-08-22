@@ -64,7 +64,10 @@ async function validateToken(token: string, txId: string) {
   
   
     if (validation.error) {
-      return <div>Error: {validation.error}</div>;
+      return  <div style={{ padding: "20px", color: "red", textAlign: "center" }}>
+      <h1>Error</h1>
+      <p>{validation.error}</p>
+    </div>
     }
 
    

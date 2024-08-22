@@ -7,6 +7,7 @@ import {  useState } from "react";
 import { TextInput } from "@repo/ui/textInput";
 import { createOnRamp } from "../actions/createOnRampTx";
 import { useRouter } from 'next/navigation'
+import { Bounce, toast } from "react-toastify";
 
 const SUPPORTED_BANKS = [{
     name: "Dummy Bank",
@@ -47,6 +48,19 @@ export const AddMoney = ()=>{
                if(response.message==="Done"){
                 const token = encodeURIComponent(response.token as string)
                 router.push(`http://localhost:3001/bank/${response.txId}?token=${token}&amount=${value}`)
+               }
+               else{
+                toast.error(`${response.message}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                    });
                }
                    
                 } }  appName={""}>

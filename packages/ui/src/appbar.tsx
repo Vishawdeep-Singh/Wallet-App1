@@ -6,6 +6,7 @@ import { useSession , signOut} from "next-auth/react";
 import { Skeleton } from "@mui/material";
 import { useRouter } from "next/navigation";
 import {ClientSession} from "@repo/interfaces/interfaces"
+import { toast, Slide } from "react-toastify";
 
 export const Appbar = () => {
   const session:ClientSession = useSession();
@@ -77,8 +78,22 @@ export const Appbar = () => {
 
       {session.status==="authenticated" && <>  <motion.button
         onClick={async ()=>{
-          await signOut({ redirect: false ,callbackUrl:"/" }); // Perform sign-out action
-      router.push("/"); // Redirect after sign-out
+          await signOut({ redirect: false ,callbackUrl:"/" }); 
+          toast.info('You are logged out', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Slide,
+            });
+            setTimeout(()=>{
+              router.push("/");
+            },1000)
+   
         }}
         className="  bg-[#5741d7] text-white border-[1px] rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         whileHover={{ scale: 1.1 }}

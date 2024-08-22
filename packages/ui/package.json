@@ -10,11 +10,10 @@
     "./code": "./src/code.tsx",
     "./label": "./src/label.tsx",
     "./input": "./src/input.tsx",
-    "./card1":"./src/card1.tsx",
-    "./center":"./src/center.tsx",
-    "./select":"./src/Select.tsx",
-    "./textInput":"./src/textInput.tsx"
-    
+    "./card1": "./src/card1.tsx",
+    "./center": "./src/center.tsx",
+    "./select": "./src/Select.tsx",
+    "./textInput": "./src/textInput.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -22,8 +21,8 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
     "@repo/interfaces": "*",
+    "@repo/typescript-config": "*",
     "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",
@@ -37,6 +36,7 @@
   },
   "dependencies": {
     "framer-motion": "^11.3.21",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-toastify": "^10.0.5"
   }
 }

@@ -45,7 +45,7 @@ return {
     
         // Check if the error is an Axios error or other types
         if (axios.isAxiosError(error)) {
-          return { message: `API request failed: ${error.message}` };
+          return { message: `API request failed: ${error.message || error.response?.data.message}` };
         } else if (error instanceof Error) {
           return { message: `An error occurred: ${error.message}` };
         } else {

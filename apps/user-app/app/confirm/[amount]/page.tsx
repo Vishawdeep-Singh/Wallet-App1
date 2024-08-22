@@ -8,6 +8,7 @@ import { offRampTx } from "../../../actions/createOffRampTx";
 import { useRouter } from "next/navigation";
 import { useParams } from 'next/navigation'
 import { useSession } from "next-auth/react";
+import { toast, Bounce } from "react-toastify";
 
 export default()=>{
    
@@ -42,6 +43,32 @@ return <div className="w-[40%] mt-64  ml-[26rem]">
                  const token = encodeURIComponent(response.token as string)
                  router.push(`http://localhost:3001/add/${response.txId}?token=${token}&amount=${params.amount}`)
                 }
+                else{
+                    toast.error(`${response.message}`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                        });
+                }
+               }
+               else{
+                toast.error(`${response.message}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                    });
                }
                 
                    
