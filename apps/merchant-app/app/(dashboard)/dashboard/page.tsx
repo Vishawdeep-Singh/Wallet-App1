@@ -15,7 +15,7 @@ export default async function Dashboard() {
    
     
     return<div className="h-screen">
-        <div className="text-4xl text-[#5640d7] pt-28 md:p-10 text-center font-bold">
+        <div className="text-4xl text-[#5640d7] mt-28 md:p-10 text-center font-bold">
             Hi ! {session.user?.name}
         </div>
     <div className="p-10 pl-20">

@@ -42,13 +42,17 @@ export default async function WithdDraw() {
     } 
     const balance = await getBalance();
     const transactions=await getOffRampTransactions();
-    
+    const sortedtransactions = transactions.sort((a:any,b:any)=>{
+        const dateA = new Date(a.time as string); // Assert timestamp is a string
+        const dateB = new Date(b.time as string); 
+        return dateB.getTime() - dateA.getTime();
+    })
     
     return <div className="w-screen">
 
 
    
-    <MotionCards isAdd={false} balance={balance} transactions={transactions}></MotionCards>
+    <MotionCards isAdd={false} balance={balance} transactions={sortedtransactions}></MotionCards>
    
     </div>
 }

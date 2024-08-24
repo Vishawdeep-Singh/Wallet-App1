@@ -9,6 +9,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../../lib/auth';
 import { Card1 } from '@repo/ui/card1';
 import { OnRampStatus1 } from '@repo/db/enum';
+import Link from 'next/link';
 
 async function getTx(){
   const session:{user:ServerSessionUser}|null = await getServerSession(authOptions);
@@ -54,7 +55,7 @@ const txns = await getTx();
 <div className='md:w-[100%] w-[100%] p-5 md:ml-60'>
 <Card1 title="Recent Transactions">
 <div className="pt-2">
-    {sortedTxns?.map((t,index) => <div key={index}className="flex justify-between py-3">
+    {sortedTxns?.slice(0,3).map((t,index) => <div key={index}className="flex justify-between py-3">
         <div>
         {t.fromUserId===Number(session?.user?.id) &&  <div className="text-md font-semibold">
                Sent INR TO {t.toMerchant.name}
@@ -81,6 +82,9 @@ const txns = await getTx();
 
     </div>)}
 </div>
+<Link className="hover:underline hover:cursor-pointer" href="/transactions/QR">
+    See More
+</Link>
 </Card1>
 </div>
  

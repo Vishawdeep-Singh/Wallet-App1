@@ -1,6 +1,8 @@
 import { Card1 } from "@repo/ui/card1"
 
 import  {OnRampStatus1} from "@repo/db/enum"
+import { permanentRedirect, redirect } from "next/navigation"
+import Link from "next/link"
 
 
 export const OffRampTransactions=({transactions}:{
@@ -22,7 +24,7 @@ export const OffRampTransactions=({transactions}:{
     }
 return <Card1 title="Recent Transactions">
 <div className="pt-2">
-    {transactions.map((t,index) => <div key={index}className="flex justify-between py-3">
+    {transactions.slice(0,3).map((t,index) => <div key={index}className="flex justify-between py-3">
         <div>
             <div className="text-md font-semibold">
                 Sent INR
@@ -41,6 +43,9 @@ return <Card1 title="Recent Transactions">
 
     </div>)}
 </div>
+<Link className="hover:underline hover:cursor-pointer" href="/transactions">
+    See More
+</Link>
 </Card1>
 }
 const getStatusStyle = (status: OnRampStatus1) => {

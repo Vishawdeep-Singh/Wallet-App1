@@ -1,25 +1,17 @@
 "use client"
-import Image from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
-import { signOut, useSession ,signIn} from "next-auth/react";
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const session = useSession();
-  return <div>
-    <button onClick={async()=>{
-      await signOut()
-    }} className="p-5">
-      Sign Out
-    </button>
-    <button onClick={async()=>{
-      await signIn()
-    }} className="p-5">
-      Sign In
-    </button>
+  const router = useRouter();
 
-    <div>
-      {JSON.stringify(session)}
-    </div>
-  </div>
+  return (
+    <button
+      onClick={async () => {
+        await router.push('/dashboard');
+      }}
+      className="p-5 mt-24 border-2 rounded-lg"
+    >
+      Go to Dashboard
+    </button>
+  );
 }
