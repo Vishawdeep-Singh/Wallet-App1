@@ -1,7 +1,7 @@
 // components/CardForm.tsx
 "use client"
 import { useState } from 'react';
-import jwt from "jsonwebtoken"
+
 import axios from "axios"
 import { useRouter } from 'next/navigation';
 import { toast, Bounce } from 'react-toastify';
@@ -9,7 +9,7 @@ export default function CardForm({tokenInfo,txId,token,amount}:{tokenInfo:any,tx
   const [cardNumber, setCardNumber] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [error, setError] = useState('');
+  const [error,] = useState('');
   const router = useRouter()
 
   console.log(process.env.JWT_SECRET)
@@ -76,7 +76,7 @@ export default function CardForm({tokenInfo,txId,token,amount}:{tokenInfo:any,tx
       }
   })
   if(response.data.message==="Captured"){
-    router.push("http://localhost:3000/transfer")
+    router.push("http://localhost:3001/transfer")
   }
   else{
     toast.error(`${response.data.message}`, {

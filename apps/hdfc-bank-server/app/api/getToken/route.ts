@@ -1,8 +1,7 @@
 // pages/api/custom-signin.ts
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
-import bcrypt from "bcrypt"
-import { randomUUID } from 'crypto';
+
 
 export   async function POST(req: NextRequest) {
  

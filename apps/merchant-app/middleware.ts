@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const allowedOrigins = ['http://localhost:3000']
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:3002',
+  'http://localhost:3003',
+];
+
 
 const corsHeaders = {
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',

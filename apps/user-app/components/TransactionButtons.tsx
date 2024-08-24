@@ -10,12 +10,12 @@ export const TransactionButtons=()=>{
         <motion.button
        
         onClick={()=>{
-            router.push("http://localhost:3000/transactions")
+            router.push("/transactions")
         }}
           className={` hover:cursor-pointer  ${pathname==='/transactions' ? 'rounded-3xl text-sm shadow-lg bg-white p-2 md:px-4 px-2 font-bold hover:scale-125 transition ease-in-out delay-50 text-black scale-110' :'text-slate-500 font-semibold scale-90'} `}  >Bank Transactions</motion.button>
         <motion.button
         onClick={()=>{
-            router.push("http://localhost:3000//transactions/p2p")
+            router.push("/transactions/p2p")
         }}
        
             
@@ -23,7 +23,7 @@ export const TransactionButtons=()=>{
           className={`hover:cursor-pointer  ${pathname==='/transactions/p2p' ? 'rounded-3xl text-sm shadow-lg bg-white p-2 md:px-4 px-2 font-bold hover:scale-125 transition ease-in-out delay-50 text-black scale-110' :'text-slate-500  font-semibold scale-90 '} `}>P2P Transactions</motion.button>
         <motion.button
         onClick={()=>{
-            router.push("http://localhost:3000/transactions/QR")
+            router.push("/transactions/QR")
         }}
        
             

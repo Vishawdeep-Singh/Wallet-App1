@@ -2,7 +2,7 @@
 import { Button } from "@repo/ui/button";
 import { Card1 } from "@repo/ui/card1"
 import { TextInput } from "@repo/ui/textInput"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { ConfirmWithDrawl } from "../../../actions/confirmationWithdrawl";
 import { offRampTx } from "../../../actions/createOffRampTx";
 import { useRouter } from "next/navigation";
@@ -35,7 +35,7 @@ return <div className="md:w-[40%] mt-64 p-3 md:ml-[26rem]">
                 console.log(response.token)
                 if(response.message==="Done"){
                  const token = encodeURIComponent(response.token as string)
-                 router.push(`http://localhost:3001/add/${response.txId}?token=${token}&amount=${params.amount}`)
+                 router.push(`http://localhost:3003/add/${response.txId}?token=${token}&amount=${params.amount}`)
                 }
                 else{
                     toast.error(`${response.message}`, {

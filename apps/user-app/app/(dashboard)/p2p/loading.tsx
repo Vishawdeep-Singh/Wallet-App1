@@ -1,6 +1,6 @@
 
 import { CircularProgress, Skeleton } from "@mui/material";
-import ClipLoader from "react-spinners/ClipLoader";
+
 
 
 export default function(){

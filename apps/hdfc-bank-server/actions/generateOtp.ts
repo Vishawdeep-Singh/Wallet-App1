@@ -2,7 +2,7 @@
 import twilio from "twilio"
 
 const client = twilio("df","dfd");
-export default async function(number:string){
+export  async function GenerateOtp(number:string){
     try {
         const verification = await client.verify.v2.services("VA8137360825643e3e2b4629c4e662c752")
           .verifications

@@ -1,7 +1,7 @@
 import { Card1 } from "@repo/ui/card1"
 
 import  {OnRampStatus1} from "@repo/db/enum"
-import { permanentRedirect, redirect } from "next/navigation"
+
 import Link from "next/link"
 
 

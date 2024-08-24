@@ -1,5 +1,5 @@
 import prisma from "@repo/db/client";
-import { ServerSessionUser,ServerSessionMerchentUser } from "@repo/interfaces/interfaces";
+import { ServerSessionMerchentUser } from "@repo/interfaces/interfaces";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import { Card1 } from "@repo/ui/card1";

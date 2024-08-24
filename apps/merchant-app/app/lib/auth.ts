@@ -1,11 +1,10 @@
 import db from "@repo/db/client";
-import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcrypt";
+
 import { NextAuthOptions, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
 import { Session } from 'next-auth';
-import { ServerSessionUser,ServerSessionMerchentUser } from "@repo/interfaces/interfaces";
+import {ServerSessionMerchentUser } from "@repo/interfaces/interfaces";
 import jwt from "jsonwebtoken"
 
 // Define the type for credentials

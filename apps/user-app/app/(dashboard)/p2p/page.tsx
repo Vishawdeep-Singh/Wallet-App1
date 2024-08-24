@@ -1,6 +1,6 @@
 
 
-import { Card1 } from "@repo/ui/card1";
+
 
 import { SendMoneyp2p } from "../../../components/sendMoneyp2p";
 import { getServerSession } from "next-auth";

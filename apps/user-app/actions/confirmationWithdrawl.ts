@@ -3,7 +3,7 @@ import prisma from "@repo/db/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../app/lib/auth";
 import { ServerSessionUser } from "@repo/interfaces/interfaces";
-import axios from "axios";
+
 import bcrypt from "bcrypt";
 
 export const ConfirmWithDrawl = async (password: string) => {

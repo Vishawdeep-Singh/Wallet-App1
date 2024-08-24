@@ -3,9 +3,6 @@ import { redirect } from 'next/navigation'
 import { authOptions } from "../../../lib/auth";
 import { ServerSessionUser } from "@repo/interfaces/interfaces";
 import prisma from "@repo/db/client";
-import { offRampTx } from "../../../../actions/createOffRampTx";
-import { Card1 } from "@repo/ui/card1";
-import { OnRampStatus1 } from "@repo/db/enum";
 import { MotionTxBank } from "../../../../components/motionTxBank";
 
 async function getOnRampTransactions() {

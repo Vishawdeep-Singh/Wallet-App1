@@ -9,7 +9,7 @@ import {ClientSession} from "@repo/interfaces/interfaces"
 import { toast, Slide } from "react-toastify";
 
 export const Appbar = () => {
-  const session:ClientSession = useSession();
+  const session:any= useSession();
   
   const router = useRouter();
  
@@ -67,7 +67,7 @@ export const Appbar = () => {
       </motion.button>
       <motion.button
          onClick={()=>{
-          router.push('http://localhost:3003/api/auth/signin')
+          router.push('http://localhost:3002/api/auth/signin')
         }}
         className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 md:py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         whileHover={{ scale: 1.1 }}
@@ -101,7 +101,7 @@ export const Appbar = () => {
         Sign Out
       </motion.button> <motion.button
          onClick={()=>{
-          router.push('http://localhost:3003/api/auth/signin')
+          router.push('http://localhost:3002/api/auth/signin')
         }}
         className=" bg-[#5741d7] hidden md:block text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         whileHover={{ scale: 1.1 }}
@@ -205,7 +205,7 @@ export const Appbar = () => {
 
             <motion.button
          onClick={()=>{
-          router.push('http://localhost:3003/api/auth/signin')
+          router.push('http://localhost:3002/api/auth/signin')
         }}
         className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         whileHover={{ scale: 1.1 }}

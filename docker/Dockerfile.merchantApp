@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package.json package-lock.json turbo.json ./
 
-COPY apps/bank-webhook ./apps/bank-webhook
+COPY apps/merchant-app ./apps/merchant-app
 COPY packages ./packages
 
 # Install dependencies
@@ -13,7 +13,6 @@ RUN npm install
 RUN npm run db:generate
 
 # Can you filter the build down to just one app?
+RUN npm run build:merchant-app
 
-
-
-CMD ["npm", "run", "dev:webhook"]
+CMD ["npm", "run", "start-merchant-app"]

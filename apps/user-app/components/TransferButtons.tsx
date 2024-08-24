@@ -12,12 +12,12 @@ const router = useRouter()
         <motion.button
        
         onClick={()=>{
-            router.push("http://localhost:3000/transfer")
+            router.push("/transfer")
         }}
           className={` hover:cursor-pointer  ${pathname==='/transfer' ? 'rounded-3xl text-sm shadow-lg bg-white p-2 px-4 font-bold hover:scale-125 transition ease-in-out delay-50 text-black scale-110' :'text-slate-500 font-semibold scale-90'} `}  >Deposit</motion.button>
         <motion.button
         onClick={()=>{
-            router.push("http://localhost:3000/transfer/withdraw")
+            router.push("/transfer/withdraw")
         }}
        
             

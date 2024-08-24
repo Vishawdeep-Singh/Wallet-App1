@@ -5,9 +5,9 @@ import { Card1 } from "@repo/ui/card1";
 import { Select } from "@repo/ui/select";
 import {  useState } from "react";
 import { TextInput } from "@repo/ui/textInput";
-import { createOnRamp } from "../actions/createOnRampTx";
+
 import { useRouter } from 'next/navigation'
-import { offRampTx } from "../actions/createOffRampTx";
+
 
 const SUPPORTED_BANKS = [{
     name: "Dummy Bank",
@@ -43,7 +43,7 @@ export const WithdrawMoney = ()=>{
         }))} />
         <div className="flex justify-center pt-4">
             <Button onClick={async () => {
-              router.push(`http://localhost:3000/confirm/${value}`)
+              router.push(`/confirm/${value}`)
                    
                 } }  appName={""}>
             Withdraw Money

@@ -22,12 +22,23 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: ./docker/Dockerfile.userApp
         push: true
-        tags: vishawdeepsingh602/user-app:latest  # Replace with your Docker Hub username and repository
+        tags: |
+          vishawdeepsingh602/user-app:latest
+          vishawdeepsingh602/merchant-app:latest
+          vishawdeepsingh602/bank-app:latest
+        files: |
+          ./docker/Dockerfile.userApp=user-app
+          ./docker/Dockerfile.merchantApp=merchant-app
+          ./docker/Dockerfile.devBank=bank-app # Replace with your Docker Hub username and repository
 
     - name: Verify Pushed Image
-      run: docker pull vishawdeepsingh602/user-app:latest  # Replace with your Docker Hub username and repository
+      run: |
+        docker pull vishawdeepsingh602/user-app:latest
+        docker pull vishawdeepsingh602/merchant-app:latest
+        docker pull vishawdeepsingh602/bank-app:latest
+
+ # Replace with your Docker Hub username and repository
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
@@ -36,7 +47,34 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          sudo docker pull vishawdeepsingh602/user-app:latest
           sudo docker stop user-app || true
           sudo docker rm user-app || true
-          sudo docker run -e DATABASE_URL=${{secrets.DB_URL}} -e JWT_SECRET=${{secrets.JWT_SECRET}} -d --name user-app -p 3005:3000 vishawdeepsingh602/user-app:latest
+          sudo docker stop merchant-app || true
+          sudo docker rm merchant-app || true
+          sudo docker stop bank-app || true
+          sudo docker rm bank-app || true
+          sudo docker pull vishawdeepsingh602/user-app:latest
+          sudo docker pull vishawdeepsingh602/merchant-app:latest
+          sudo docker pull vishawdeepsingh602/bank-app:latest
+
+          sudo docker run  -e DATABASE_URL=${{ secrets.DB_URL }} \
+                           -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
+                           -e NEXTAUTH_URL=${{secrets.NEXTAUTH_URL}} \
+                           -d --name user-app \
+                           -p 3001:3000 \
+                           vishawdeepsingh602/user-app:latest
+
+          sudo docker run  -e DATABASE_URL=${{ secrets.DB_URL }} \
+                           -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
+                           -e NEXTAUTH_URL=${{secrets.NEXTAUTH_URL2}} \
+                           -e GOOGLE_ID=${{secrets.GOOGLE_ID}} \
+                           -e GOOGLE_SECRET=${{secrets.GOOGLE_SECRET}} \
+                           -d --name merchant-app \
+                           -p 3002:3000 \
+                           vishawdeepsingh602/merchant-app:latest
+
+          sudo docker run -e DATABASE_URL=${{ secrets.DB_URL }} \
+                           -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
+                           -d --name bank-app \
+                           -p 3003:3000 \
+                           vishawdeepsingh602/bank-app:latest

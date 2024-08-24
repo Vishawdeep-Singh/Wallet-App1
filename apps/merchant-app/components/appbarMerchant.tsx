@@ -5,7 +5,7 @@ import { FaWallet } from "react-icons/fa6";
 import { useSession , signOut} from "next-auth/react";
 import { Skeleton } from "@mui/material";
 import { useRouter } from "next/navigation";
-import {ClientSession} from "@repo/interfaces/interfaces"
+
 import { toast, Slide } from "react-toastify";
 
 export const AppbarMerchant = () => {

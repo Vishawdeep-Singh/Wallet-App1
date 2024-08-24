@@ -14,6 +14,6 @@ RUN npm run db:generate
 
 # Can you filter the build down to just one app?
 
+RUN npm run build:bank-app
 
-
-CMD ["npm", "run", "dev:bank-app"]
+CMD ["npm", "run", "start-bank-app"]

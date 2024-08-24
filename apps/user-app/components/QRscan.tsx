@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -32,41 +33,52 @@ export const QRSCAN=()=>{
   const handleScan = async (result: any) => {
     if (result) {
         try {
-            const response = await fetch('http://localhost:3003/api/verifyToken', {
-                method: 'POST', // Specify the HTTP method
-                headers: {
-                    'Content-Type': 'application/json', // Indicate the type of content being sent
-                },
-                body: JSON.stringify({
-                    accessToken: `${result.text}`, // Replace with actual data
-                }),
-            });
-            if (!response.ok) {
-                // Parse the response JSON to get error details
-                const errorData = await response.json();
-                const errorMessage = errorData.error || `HTTP error! status: ${response.status}`;
-                throw new Error(errorMessage);
-            }
-            const details:{
-              merchantDetails:merchantDetails
-            } = await response.json();
-           router.push(`/paymentGateway/${details. merchantDetails.id}/${details.merchantDetails.name}`)
-           
+          const response = await axios.post('http://localhost:3002/api/verifyToken', {
+            accessToken: `${result.text}`, // Replace with actual data
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+      
+          // Check if the response is okay
+          if (response.status === 200) {
+            const details = response.data;
+            router.push(`/paymentGateway/${details.merchantDetails.id}/${details.merchantDetails.name}`);
+          }
+      
+          
+          
             
            
         } catch (error:any) {
-          toast.error(`${error.message}`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-            });
-            console.log('Fetch error:', error.message);
+          let errorMessage = 'An unknown error occurred';
+    
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      errorMessage = error.response.data.error || `HTTP error! status: ${error.response.status}`;
+    } else if (error.request) {
+      // The request was made but no response was received
+      errorMessage = 'No response received from server';
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      errorMessage = error.message;
+    }
+
+    toast.error(`${errorMessage}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+
+    console.log('Fetch error:', errorMessage);
         }
     }
 };

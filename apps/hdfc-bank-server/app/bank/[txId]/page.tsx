@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import db from '@repo/db/client';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+
 import CardForm from '../../../components/DummyBankFrom';
 import jwt from "jsonwebtoken"
 
