@@ -76,7 +76,7 @@ export default function CardForm({tokenInfo,txId,token,amount}:{tokenInfo:any,tx
       }
   })
   if(response.data.message==="Captured"){
-    router.push("http://localhost:3001/transfer")
+    router.push("http://vault.user-app.vishawdeepsingh.in/transfer")
   }
   else{
     toast.error(`${response.data.message}`, {

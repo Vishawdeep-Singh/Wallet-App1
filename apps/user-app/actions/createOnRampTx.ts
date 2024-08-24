@@ -21,7 +21,7 @@ if(!session?.user || !session.user?.id){
     }
 }
 
-const { data: tokenResponse } = await axios.post("http://bank-app-container:3000/api/getToken",{accessToken:session.user.accessToken,time:new Date()})
+const { data: tokenResponse } = await axios.post("http://bank-app:3000/api/getToken",{accessToken:session.user.accessToken,time:new Date()})
 const hashedToken = await bcrypt.hash(tokenResponse.token,10);
 const newTx =await prisma.onRampTransaction.create({
     data:{
