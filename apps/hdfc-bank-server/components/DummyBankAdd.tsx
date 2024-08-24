@@ -15,7 +15,7 @@ export default function CardForm2({tokenInfo,txId,token,amount}:{tokenInfo:any,t
   console.log(process.env.JWT_SECRET)
 
   return (
-    <div className="max-w-md mx-auto p-4 mt-32 bg-white border border-gray-200 rounded-lg shadow-md">
+    <div className="md:max-w-md mx-auto p-4 mt-32 w-[95%] bg-white border border-gray-200 rounded-lg shadow-md">
         <h1>Add to Bank</h1>
       <h2 className="text-xl font-semibold mb-4">Card Details</h2>
       {error && <div className="text-red-500 mb-4">{error}</div>}

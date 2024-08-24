@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "../../../../lib/auth";
 import prisma from "@repo/db/client";
 import { Card1 } from "@repo/ui/card1";
+import { OnRampStatus1 } from "@repo/db/enum";
 
 async function getTx() {
   const session: { user: ServerSessionUser } | null =
@@ -42,14 +43,14 @@ export default async function () {
 
   return (
     <div className="h-screen flex items-center">
-      <div className="w-[50%] ml-60">
+      <div className="md:w-[50%] w-full p-5  md:ml-60">
         <Card1 title="Recent Transactions">
           <div className="pt-2">
             {sortedTxns?.map((t, index) => (
               <div key={index} className="flex justify-between py-3">
                 <div>
                   {t.fromUserId === Number(session?.user?.id) && (
-                    <div className="text-md font-semibold">
+                    <div className="md:text-md  text-sm font-semibold">
                       Sent INR TO {t.toMerchant.name}
                     </div>
                   )}
@@ -57,6 +58,9 @@ export default async function () {
                   <div className="text-slate-600 text-xs">
                     {t.timestamp.toDateString()}
                   </div>
+                  <div className={`text-xs mt-1 font-semibold ${getStatusStyle(t.status)}`}>
+                {t.status}
+              </div>
                 </div>
                 {t.fromUserId === Number(session?.user?.id) && (
                   <div className="flex flex-col justify-center">
@@ -71,3 +75,16 @@ export default async function () {
     </div>
   );
 }
+
+const getStatusStyle = (status: OnRampStatus1) => {
+  switch (status) {
+    case 'Success':
+      return 'text-green-600';
+    case 'Processing':
+      return 'text-yellow-600';
+    case 'Failure':
+      return 'text-red-600';
+    default:
+      return 'text-slate-600';
+  }
+};

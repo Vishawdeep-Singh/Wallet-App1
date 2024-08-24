@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "../providers";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Appbar } from "@repo/ui/appbar";
 
 const geistSans = localFont({
@@ -27,30 +27,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-             <Providers>
-      <body  className={`${geistSans.variable} ${geistMono.variable}`}>
- 
-        <ToastContainer
-position="top-right"
-autoClose={50000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="light"
+      <Providers>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <ToastContainer
+            position="top-right"
+            autoClose={50000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          {/* Same as */}
+          <ToastContainer />
+          <span>
+            <Appbar></Appbar>
+          </span>
+         
 
-/>
-{/* Same as */}
-<ToastContainer />
-<span><Appbar></Appbar></span>
-    
           {children}
-      
-        
-      </body>
+        </body>
       </Providers>
     </html>
   );

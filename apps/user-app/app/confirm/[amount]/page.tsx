@@ -21,14 +21,8 @@ export default()=>{
     const router = useRouter();
     const params = useParams<{ amount:string}>();
     const [pass,SetPass]=useState("");
-    useEffect(() => {
-        // Check if the page was accessed directly
-        if (document.referrer === '') {
-          // Redirect to a safe page or show an error
-          router.push('/dashboard');
-        }
-      }, [router]);
-return <div className="w-[40%] mt-64  ml-[26rem]">
+    
+return <div className="md:w-[40%] mt-64 p-3 md:ml-[26rem]">
 <Card1 title={"Are you sure"}>
     <div className="w-full">
     <TextInput type="password" label={"Password"} placeholder={"Password"} onChange={(val) => {
@@ -73,7 +67,7 @@ return <div className="w-[40%] mt-64  ml-[26rem]">
                 
                    
                 } }  appName={""}>
-            Add Money
+         Confirm Withdrawl
             </Button>
     </div>
 </Card1>

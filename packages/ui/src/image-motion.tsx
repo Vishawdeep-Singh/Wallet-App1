@@ -16,7 +16,7 @@ export const ImageMotion = (props:imageMotionProps) => {
   }}
   
   src={props.src} alt="People photo" className={` ${
-    props.isMainImage ? 'absolute top-[15rem] left-[45rem] w-[700px] h-[500px] rounded-3xl' : 'rounded-3xl w-[495px] h-[500px]'
+    props.isMainImage ? 'absolute md:top-[15rem] md:left-[45rem] w-[10rem] h-[10rem] md:w-[700px] md:h-[500px] rounded-3xl' : 'rounded-3xl w-[13rem] h-[13rem] md:w-[495px] md:h-[500px]'
   }`}></motion.img>
 };
 

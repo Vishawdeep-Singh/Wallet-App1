@@ -10,7 +10,7 @@ export default async function Dashboard() {
         redirect('/signin')
     } 
     
-    return<div>
+    return<div className="h-screen">
         <div className="text-4xl text-[#5640d7] pt-28 p-10 font-bold">
             Hi ! {session.user?.name}
         </div>

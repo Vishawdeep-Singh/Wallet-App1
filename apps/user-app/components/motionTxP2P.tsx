@@ -19,7 +19,7 @@ export const MotionP2PTx=({sortedTxns,session}:any)=>{
    variants={container}
     initial="hidden"
     animate="visible"
-   className="w-[50%]">
+   className="md:w-[50%] w-full p-5">
             <Card1 title="Recent Transactions">
 <div className="pt-2">
     {sortedTxns?.map((t:any,index:any) => <div key={index}className="flex justify-between py-3">

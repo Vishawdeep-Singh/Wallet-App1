@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 import {ClientSession} from "@repo/interfaces/interfaces"
 import { toast, Slide } from "react-toastify";
 
-export const Appbar = () => {
-  const session:ClientSession = useSession();
+export const AppbarMerchant = () => {
+  const session = useSession();
   
   const router = useRouter();
  
@@ -40,7 +40,7 @@ export const Appbar = () => {
       }} className="flex space-x-4 cursor-pointer items-center">
         <FaWallet size={45} color="#5640d7" />
         <div className="md:text-3xl text-xl font-mono font-extrabold text-[#5640d7]">
-          Vault
+          Vault Merchant
         </div>
       </div>
 
@@ -49,31 +49,15 @@ export const Appbar = () => {
       {session.status==="unauthenticated" && <div className="space-x-4 flex md:block">
       <motion.button
         onClick={()=>{
-          router.push('/signin')
+          router.push('api/auth/signin')
         }}
         className=" bg-[#5741d7] text-white border-[1px] rounded-md bg-primary px-4 md:py-2  text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         whileHover={{ scale: 1.1 }}
       >
         Sign In
       </motion.button>
-      <motion.button
-         onClick={()=>{
-          router.push('/signup')
-        }}
-        className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 md:py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-        whileHover={{ scale: 1.1 }}
-      >
-        Sign Up
-      </motion.button>
-      <motion.button
-         onClick={()=>{
-          router.push('http://localhost:3003/api/auth/signin')
-        }}
-        className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 md:py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-        whileHover={{ scale: 1.1 }}
-      >
-        Merchant Login
-      </motion.button>
+      
+    
       </div>}
 
       {session.status==="authenticated" && <>  <motion.button
@@ -99,15 +83,7 @@ export const Appbar = () => {
         whileHover={{ scale: 1.1 }}
       >
         Sign Out
-      </motion.button> <motion.button
-         onClick={()=>{
-          router.push('http://localhost:3003/api/auth/signin')
-        }}
-        className=" bg-[#5741d7] hidden md:block text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-        whileHover={{ scale: 1.1 }}
-      >
-        Merchant Login
-      </motion.button></> }
+      </motion.button> </> }
 
       {session.status==="authenticated" && <motion.div
         className="flex flex-col "
@@ -172,7 +148,7 @@ export const Appbar = () => {
           >
             <motion.li className="w-full p-2 text-left hover:bg-slate-200" variants={itemVariants}>Name : {session.data?.user?.name}</motion.li>
             <motion.li className="w-full p-2   text-left hover:bg-slate-200" variants={itemVariants}>Email : {session.data?.user?.email}</motion.li>
-            <motion.li className="w-full p-2  text-left hover:bg-slate-200" variants={itemVariants}>Phone : {session.data?.user?.number}</motion.li>
+
             <motion.li className="w-full p-2 md:hidden text-left hover:bg-slate-200" variants={itemVariants}>
             {session.status==="authenticated" && <>  <motion.button
         onClick={async ()=>{
@@ -201,19 +177,6 @@ export const Appbar = () => {
 
             </motion.li>
 
-            <motion.li className="w-full p-2 text-left md:hidden hover:bg-slate-200">
-
-            <motion.button
-         onClick={()=>{
-          router.push('http://localhost:3003/api/auth/signin')
-        }}
-        className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-        whileHover={{ scale: 1.1 }}
-      >
-        Merchant Login
-      </motion.button>
-
-            </motion.li>
            
           </motion.ul>
       

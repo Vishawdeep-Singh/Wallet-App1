@@ -26,7 +26,7 @@ return<motion.div
 variants={container}
     initial="hidden"
     animate="visible"
- className="grid grid-cols-2 gap-4">
+ className="grid md:grid-cols-2 grid-cols-1 w-[100%] p-4  gap-4">
             <motion.div variants={item}>
             <Card1 title="Credited">
       <div className="pt-2">

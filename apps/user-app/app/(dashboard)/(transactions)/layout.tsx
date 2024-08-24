@@ -27,7 +27,7 @@ export default function Layout({
 
     return <div className="w-full">
         
-    <div className="text-6xl text-[#5640d7] pt-20 pl-10 font-bold">
+    <div className="text-6xl text-[#5640d7] pt-20 md:pl-10 font-bold">
         Transactions
     </div>
 

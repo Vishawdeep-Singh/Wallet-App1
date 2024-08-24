@@ -54,8 +54,8 @@ export const  MotionCards=async({balance,transactions,isAdd}:TransactionFunction
     variants={container}
     initial="hidden"
     animate="visible"
-    className="container grid grid-cols-1 gap-4 md:grid-cols-2 p-4">
-    <motion.div variants={item} className="item">
+    className=" grid w-[100%]  grid-cols-1 gap-4 md:grid-cols-2 p-4">
+    <motion.div variants={item} className="item w-full ">
        {isAdd ? <AddMoney></AddMoney> : <WithdrawMoney></WithdrawMoney>}
        
     </motion.div>

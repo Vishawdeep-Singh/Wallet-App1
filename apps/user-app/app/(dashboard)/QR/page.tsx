@@ -8,6 +8,7 @@ import { ServerSessionUser } from '@repo/interfaces/interfaces';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../../lib/auth';
 import { Card1 } from '@repo/ui/card1';
+import { OnRampStatus1 } from '@repo/db/enum';
 
 async function getTx(){
   const session:{user:ServerSessionUser}|null = await getServerSession(authOptions);
@@ -50,7 +51,7 @@ const txns = await getTx();
   <QRSCAN></QRSCAN>
   </div>
 
-<div className='w-[100%] ml-60'>
+<div className='md:w-[100%] w-[100%] p-5 md:ml-60'>
 <Card1 title="Recent Transactions">
 <div className="pt-2">
     {sortedTxns?.map((t,index) => <div key={index}className="flex justify-between py-3">
@@ -65,6 +66,9 @@ const txns = await getTx();
             <div className="text-slate-600 text-xs">
                 {t.timestamp.toDateString()}
             </div>
+            <div className={`text-xs mt-1 font-semibold ${getStatusStyle(t.status)}`}>
+                {t.status}
+              </div>
             
         </div>
         {t.fromUserId===Number(session?.user?.id) &&  <div className="flex flex-col justify-center">
@@ -86,3 +90,15 @@ const txns = await getTx();
 }
 
   
+const getStatusStyle = (status: OnRampStatus1) => {
+  switch (status) {
+    case 'Success':
+      return 'text-green-600';
+    case 'Processing':
+      return 'text-yellow-600';
+    case 'Failure':
+      return 'text-red-600';
+    default:
+      return 'text-slate-600';
+  }
+};

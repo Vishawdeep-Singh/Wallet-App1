@@ -7,7 +7,14 @@ module.exports = {
     "../../packages/ui/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+     
+        screens: {
+          'custom-sm': '300px',
+          
+        },
+      }
+  
   },
   plugins: [],
 }

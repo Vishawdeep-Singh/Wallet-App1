@@ -43,11 +43,11 @@ export default async function PaymentGateway({params}:{params:{id:string,name:st
 
 
 
-    return <div className="flex flex-col items-center h-full w-full]">
-       <div className="text-4xl text-[#5640d7] pt-28 p-10 font-bold mt-28">
+    return <div className="flex flex-col items-center h-full w-full">
+       <div className=" text-4xl text-[#5640d7] md:pt-28 pt-10 p-5 text-center md:p-10 font-bold mt-28">
             Payment to Mr. <span className="text-black">{decodeURIComponent(params.name)}</span> 
         </div>
-        <div className="w-[30%] mt-20">
+        <div className="md:w-[30%] w-[90%] mt-20">
             <QRPAY id={params.id}></QRPAY>
         </div>
     </div>

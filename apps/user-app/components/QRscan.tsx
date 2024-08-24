@@ -72,12 +72,12 @@ export const QRSCAN=()=>{
 };
 
    
-    return<div className="flex">
+    return<div className="flex md:flex-row flex-col">
 
     <div className="text-4xl shrink-0 text-[#5640d7] pt-28 p-10 font-bold">
             QR Pay
         </div>
-    <div className='w-[50%] h-[50%] shrink-0 m-32 '>
+    <div className='w-[50%] h-[50%] shrink-0 md:m-32 ml-10 '>
           {cameraActive && 
         <QrReader
           onResult={handleScan}

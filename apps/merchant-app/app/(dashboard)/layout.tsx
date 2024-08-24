@@ -15,9 +15,18 @@ export default function Layout({
 
 
 
-    return <div className="flex bg-[#faf3f4]">
-        <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
+    return <div className="flex  md:flex-row flex-col bg-[#faf3f4]">
+        <div className="w-72 hidden md:block border-r border-slate-300 min-h-screen mr-4 pt-28">
             <div>
+                <SidebarItem href={"/dashboard"} title="Home" icon={<HomeIcon></HomeIcon>}></SidebarItem>
+               
+                <SidebarItem href={"/transactions"} title="Transactions" icon={<TransactionsIcon/>}></SidebarItem>
+              
+               
+            </div>
+        </div>
+        <div className="w-screen border-t border-b border-[#8869f5] p-2 mt-20 h-20 md:hidden">
+            <div className="flex">
                 <SidebarItem href={"/dashboard"} title="Home" icon={<HomeIcon></HomeIcon>}></SidebarItem>
                
                 <SidebarItem href={"/transactions"} title="Transactions" icon={<TransactionsIcon/>}></SidebarItem>

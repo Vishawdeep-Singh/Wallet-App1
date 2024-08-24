@@ -59,8 +59,8 @@ export default async function (){
   console.log(alltxns)
 
 
-    return <div className="w-screen h-screen flex items-center justify-evenly">
-     <div className="w-[40%]">
+    return <div className="w-screen h-screen flex md:flex-row flex-col items-center justify-evenly">
+     <div className="md:w-[40%] w-[85%]">
         <SendMoneyp2p></SendMoneyp2p>
      </div>
             
