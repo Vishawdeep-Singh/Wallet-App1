@@ -3,11 +3,13 @@ import { getServerSession } from "next-auth";
 import { redirect } from 'next/navigation'
 import { authOptions } from "../../lib/auth";
 import QrCode from "../../../components/qrcodedisplay"
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default async function Dashboard() {
     const session:any = await getServerSession(authOptions);
     if (!session?.user) {
-        redirect(`/api/auth/signin?callbackUrl=${encodeURIComponent('http://localhost:3003/dashboard')}`)
+        redirect(`/api/auth/signin?callbackUrl=${encodeURIComponent('/dashboard')}`)
     } 
    
     
@@ -16,7 +18,10 @@ export default async function Dashboard() {
             Hi ! {session.user?.name}
         </div>
     <div className="p-10 pl-20">
-    <QrCode></QrCode>
+        <Suspense fallback={<Loading></Loading>}>
+        <QrCode></QrCode>
+        </Suspense>
+    
     </div>
        
         

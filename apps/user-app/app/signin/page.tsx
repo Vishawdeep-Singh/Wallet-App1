@@ -12,11 +12,13 @@ import { Button } from "@repo/ui/button"
 import { motion } from "framer-motion"
 import {  useState } from "react"
 
+
 import {SignInType} from "@repo/zod-validation"
 
 import { Slide, toast} from "react-toastify"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import CircularProgress from "@mui/material/CircularProgress"
 
 
 
@@ -46,6 +48,9 @@ export default function SignInComponent() {
     SetError(null);
     
     try {
+      setTimeout(()=>{
+        
+      })
       const res = await signIn("credentials", {
         phone: formData.number,
         password: formData.password,
@@ -54,6 +59,8 @@ export default function SignInComponent() {
        
       });
       console.log(res)
+     
+
 
       if (res?.error) {
         toast.error("Credentials are wrong", {
@@ -101,8 +108,8 @@ export default function SignInComponent() {
     <><div className="bg-[#faf3f4] flex min-h-screen flex-col">
 
       
-      <main className="flex flex-1 flex-col items-center justify-center px-6 py-8 sm:px-8 md:px-10">
-        <div className="mx-auto max-w-md space-y-6">
+      <main className="flex flex-1 flex-col items-center justify-center px-6 py-8 pt-28  sm:px-8 md:px-10">
+        <div className="mx-auto max-w-md p-4 space-y-6">
           <div className="space-y-2 text-center">
             <motion.h1 initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1.2 }}
@@ -137,6 +144,7 @@ export default function SignInComponent() {
             </CardFooter>
           </Card>
         </div>
+        {loading &&  <CircularProgress />}
       </main>
       <footer className="bg-[#1c1c1c] px-6 py-4 text-center text-sm text-muted-foreground sm:px-8 md:px-10">
         &copy; 2024 Currency Wallet. All rights reserved.

@@ -29,23 +29,12 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          <ToastContainer
-            position="top-right"
-            autoClose={50000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
+          <ToastContainer/>
           {/* Same as */}
-          <ToastContainer />
-          <span>
+          
+       
             <Appbar></Appbar>
-          </span>
+        
          
 
           {children}

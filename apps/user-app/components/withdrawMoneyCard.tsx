@@ -7,8 +7,19 @@ import {  useState } from "react";
 import { TextInput } from "@repo/ui/textInput";
 
 import { useRouter } from 'next/navigation'
+import { Backdrop, CircularProgress } from "@mui/material";
 
-
+const LoadingOverlay: React.FC = () => {
+    return (
+      <Backdrop open={true} style={{ zIndex: 9999 }}>
+         <CircularProgress color="inherit"  />
+        <div className="flex flex-col items-center justify-center">
+         
+          <p className="mt-2 text-white">Redirecting you to Bank...</p>
+        </div>
+      </Backdrop>
+    );
+  };
 const SUPPORTED_BANKS = [{
     name: "Dummy Bank",
     redirectUrl: "https://netbanking.hdfcbank.com"

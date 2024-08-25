@@ -8,6 +8,8 @@ import { authOptions } from "../../lib/auth";
 import prisma from "@repo/db/client";
 import { ServerSessionUser } from "@repo/interfaces/interfaces";
 import { MotionP2PTx } from "../../../components/motionTxP2P";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 
 
@@ -39,24 +41,30 @@ async function getP2PTx(){
    return txns;
 }
 
+export  async function TxnsComponent() {
+    
+    const session:{
+        user:ServerSessionUser
+    }|null = await getServerSession(authOptions);
+    const  txns  = await getP2PTx();
+  
+    const alltxns = txns?.sentTransfers.concat(txns.receivedTransfers);
+    const sortedTxns = alltxns?.sort((a: any, b: any) => {
+      const dateA = new Date(a.timestamp as string); // Assert timestamp is a string
+      const dateB = new Date(b.timestamp as string);
+      return dateB.getTime() - dateA.getTime();
+    });
+  
+    return <MotionP2PTx session={session} sortedTxns={sortedTxns}></MotionP2PTx>;
+  }
 
 
 
 
 export default async function (){
     
-    const txs=await getP2PTx();
-    const session:{
-        user:ServerSessionUser
-    }|null = await getServerSession(authOptions);
-   const alltxns=  txs?.sentTransfers.concat(txs.receivedTransfers);
-   const sortedTxns = alltxns?.sort((a:any, b:any) => {
-    // Convert timestamps to Date objects and compare
-    const dateA = new Date(a.timestamp as string); // Assert timestamp is a string
-    const dateB = new Date(b.timestamp as string); 
-    return dateB.getTime() - dateA.getTime();
-  });
-  console.log(alltxns)
+   
+
 
 
     return <div className="w-screen h-screen flex md:flex-row flex-col items-center justify-evenly">
@@ -98,7 +106,10 @@ export default async function (){
 </div>
 </Card1>
             </div> */}
-            <MotionP2PTx session={session} sortedTxns={sortedTxns}></MotionP2PTx>
+            <Suspense fallback={<Loading></Loading>}>
+            <TxnsComponent></TxnsComponent>
+            </Suspense>
+           
         
     </div>
 }

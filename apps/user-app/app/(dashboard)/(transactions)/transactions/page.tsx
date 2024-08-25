@@ -12,6 +12,7 @@ async function getOnRampTransactions() {
             userId: Number(session?.user?.id)
         }
     });
+   
     return txns.map(t => ({
         startTime: t.startTime,
         amount: t.amount,
@@ -26,6 +27,7 @@ async function getOffRampTransactions() {
             userId: Number(session?.user?.id)
         }
     });
+    
     return txns.map(t => ({
         startTime: t.startTime,
         amount: t.amount,
@@ -42,6 +44,7 @@ export default async function Transactions() {
 
     const offrampTx = await getOffRampTransactions();
     const onrampTx=await getOnRampTransactions();
+    
     
    
     

@@ -16,6 +16,7 @@ import {SignUpType} from "@repo/zod-validation"
 import { signup } from "../../actions/signup"
 import { Bounce, toast } from "react-toastify"
 import { useRouter } from "next/navigation";
+import CircularProgress from "@mui/material/CircularProgress"
 
 
 
@@ -30,7 +31,7 @@ export default function SignUpComponent() {
     password:" "
    
   });
-
+const [loading,setLoading]=useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -41,8 +42,11 @@ export default function SignUpComponent() {
   };
 
   async function SignUpHandler(){
+   
     try{
+      setLoading(true)
       const response =await signup(formData);
+      setLoading(false)
      if(response?.message==="Success"){
        router.push('/signin')
      }
@@ -110,6 +114,9 @@ export default function SignUpComponent() {
        }
        
      }
+     finally{
+      setLoading(false)
+     }
   }
 
  
@@ -158,6 +165,7 @@ export default function SignUpComponent() {
             </CardFooter>
           </Card>
         </div>
+        {loading &&  <CircularProgress />}
       </main>
       <footer className="bg-[#1c1c1c] px-6 py-4 text-center text-sm text-muted-foreground sm:px-8 md:px-10">
         &copy; 2024 Currency Wallet. All rights reserved.

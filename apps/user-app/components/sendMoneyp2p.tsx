@@ -8,6 +8,22 @@ import { p2pTransfer } from "../actions/p2pTransfer"
 import { Bounce, toast } from "react-toastify"
 
 
+import {CircularProgress}  from '@mui/material';
+import { Backdrop } from '@mui/material';
+
+const LoadingOverlay: React.FC = () => {
+  return (
+    <Backdrop open={true} style={{ zIndex: 9999 }}>
+       <CircularProgress color="inherit"  />
+      <div className="flex flex-col items-center justify-center">
+       
+        <p className="mt-2 text-white">Sending Money...</p>
+      </div>
+    </Backdrop>
+  );
+};
+
+
 const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
@@ -30,6 +46,8 @@ const container = {
 export const SendMoneyp2p=()=>{
     const [number,Setnumber]=useState("");
     const [amount,Setamount]=useState(0);
+    const [loading,setLoading]=useState(false);
+    
 return <motion.div
 variants={container}
 initial="hidden"
@@ -47,7 +65,9 @@ initial="hidden"
             Setamount(Number(value))
         } } placeholder={"Enter amount"}></TextInput>
         <Button onClick={async()=>{
+          setLoading(true);
             const response= await p2pTransfer(number, Number(amount) * 100);
+            setLoading(false)
             console.log(response)
             if (response.status === 'success') {
       console.log('Transfer successful:', response.message);
@@ -79,6 +99,7 @@ initial="hidden"
         }}  appName={""} >Send</Button>
     </Card1>
     </motion.div>
+    {loading&&<LoadingOverlay></LoadingOverlay>}
   
 </motion.div> 
 }

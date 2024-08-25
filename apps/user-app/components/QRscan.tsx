@@ -1,5 +1,6 @@
 "use client";
 
+import { Backdrop, CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -11,9 +12,20 @@ interface merchantDetails{
     id:string,
     name:string
   }
-
+  const LoadingOverlay: React.FC = () => {
+    return (
+      <Backdrop open={true} style={{ zIndex: 9999 }}>
+         <CircularProgress color="inherit"  />
+        <div className="flex flex-col items-center justify-center">
+         
+          <p className="mt-2 text-white">Processing QR...</p>
+        </div>
+      </Backdrop>
+    );
+  };
 export const QRSCAN=()=>{
     const [cameraActive, setCameraActive] = useState<boolean>(true);
+    const [loading,setLoading]=useState(false);
     const router = useRouter();
     console.log(cameraActive)
 
@@ -33,6 +45,7 @@ export const QRSCAN=()=>{
   const handleScan = async (result: any) => {
     if (result) {
         try {
+          setLoading(true);
           const response = await axios.post('http://vault.merchant-app.vishawdeepsingh.in/api/verifyToken', {
             accessToken: `${result.text}`, // Replace with actual data
           }, {
@@ -40,7 +53,7 @@ export const QRSCAN=()=>{
               'Content-Type': 'application/json',
             },
           });
-      
+          setLoading(false);
           // Check if the response is okay
           if (response.status === 200) {
             const details = response.data;
@@ -104,5 +117,6 @@ export const QRSCAN=()=>{
       }
 
     </div>
+    {loading && <LoadingOverlay/>}
     </div> 
 }
