@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { Button } from "@repo/ui/button";
-import { Card1 } from "@repo/ui/card1";
-import { TextInput } from "@repo/ui/textInput";
-import { useState } from "react";
-import { UsertoMerchantPay } from "../actions/create_user_to_merchant_tx";
-import { useRouter } from "next/navigation";
-import { Bounce, toast } from "react-toastify";
-import { Backdrop, CircularProgress } from "@mui/material";
+import { Button } from '@repo/ui/button';
+import { Card1 } from '@repo/ui/card1';
+import { TextInput } from '@repo/ui/textInput';
+import { useState } from 'react';
+import { UsertoMerchantPay } from '../actions/create_user_to_merchant_tx';
+import { useRouter } from 'next/navigation';
+import { Bounce, toast } from 'react-toastify';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 const LoadingOverlay: React.FC = () => {
   return (
@@ -41,31 +41,31 @@ export const QRPAY = ({ id }: { id: string }) => {
             setisLoading(true);
             const response = await UsertoMerchantPay(id, amount);
             setisLoading(false);
-            if (response.status === "success") {
+            if (response.status === 'success') {
               toast.success(`${response.message}`, {
-                position: "top-right",
+                position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "light",
+                theme: 'light',
                 transition: Bounce,
               });
               setTimeout(() => {
-                router.push("/dashboard");
+                router.push('/dashboard');
               }, 3000);
-            } else if (response.status === "error") {
+            } else if (response.status === 'error') {
               toast.error(`${response.message}`, {
-                position: "top-right",
+                position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "light",
+                theme: 'light',
                 transition: Bounce,
               });
             }

@@ -7,12 +7,12 @@ services:
       dockerfile: ./docker/Dockerfile.userApp
     image: user-app-image
     ports:
-      - "3001:3000"
+      - '3001:3000'
     environment:
       - CHOKIDAR_USEPOLLING=true
       - DATABASE_URL=postgresql://postgres:secret@db:5432/postgres
       - JWT_SECRET=secret
-   
+
     container_name: user-app-container
 
   merchant-app:
@@ -21,13 +21,12 @@ services:
       dockerfile: ./docker/Dockerfile.merchantApp
     image: merchant-app-image
     ports:
-      - "3002:3000"
+      - '3002:3000'
     environment:
       - CHOKIDAR_USEPOLLING=true
       - DATABASE_URL=postgresql://postgres:secret@db:5432/postgres
       - JWT_SECRET=secret
-    
-  
+
     container_name: merchant-app-container
 
   bank-app:
@@ -36,12 +35,12 @@ services:
       dockerfile: ./docker/Dockerfile.devBank
     image: bank-app-image
     ports:
-      - "3003:3000"
+      - '3003:3000'
     environment:
       - CHOKIDAR_USEPOLLING=true
       - DATABASE_URL=postgresql://postgres:secret@db:5432/postgres
       - JWT_SECRET=secret
-   
+
     container_name: bank-app-container
 
   db:
@@ -52,7 +51,7 @@ services:
       POSTGRES_PASSWORD: secret
       POSTGRES_DB: postgres
     ports:
-      - "5431:5432"
+      - '5431:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

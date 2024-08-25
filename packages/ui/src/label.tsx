@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React from 'react';
 
 interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {

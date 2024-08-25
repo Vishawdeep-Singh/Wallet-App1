@@ -1,10 +1,10 @@
-import { ServerSessionUser } from "@repo/interfaces/interfaces";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
-import { authOptions } from "../../../../lib/auth";
-import prisma from "@repo/db/client";
-import { Card1 } from "@repo/ui/card1";
-import { OnRampStatus1 } from "@repo/db/enum";
+import { ServerSessionUser } from '@repo/interfaces/interfaces';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
+import { authOptions } from '../../../../lib/auth';
+import prisma from '@repo/db/client';
+import { Card1 } from '@repo/ui/card1';
+import { OnRampStatus1 } from '@repo/db/enum';
 
 async function getTx() {
   const session: { user: ServerSessionUser } | null =
@@ -29,7 +29,7 @@ export default async function () {
     user: ServerSessionUser;
   } | null = await getServerSession(authOptions);
   if (!session?.user) {
-    redirect("/signin");
+    redirect('/signin');
   }
 
   const txns = await getTx();
@@ -58,9 +58,11 @@ export default async function () {
                   <div className="text-slate-600 text-xs">
                     {t.timestamp.toDateString()}
                   </div>
-                  <div className={`text-xs mt-1 font-semibold ${getStatusStyle(t.status)}`}>
-                {t.status}
-              </div>
+                  <div
+                    className={`text-xs mt-1 font-semibold ${getStatusStyle(t.status)}`}
+                  >
+                    {t.status}
+                  </div>
                 </div>
                 {t.fromUserId === Number(session?.user?.id) && (
                   <div className="flex flex-col justify-center">

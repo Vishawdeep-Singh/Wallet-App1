@@ -12,7 +12,7 @@
   },
   "exports": {
     "./client": "./index.ts",
-    "./enum":"./enum.ts"
+    "./enum": "./enum.ts"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

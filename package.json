@@ -19,7 +19,7 @@
     "dev:all": "cd ./apps/bank-webhook && npm run dev && cd ../../ & cd ./apps/hdfc-bank-server && npm run dev && cd ../../ & cd ./apps/user-app && npm run dev && cd ../../ &"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "turbo": "^2.0.11",
     "typescript": "^5.4.5"
   },
@@ -31,5 +31,4 @@
     "apps/*",
     "packages/*"
   ]
-
 }

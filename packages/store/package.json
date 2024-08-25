@@ -14,5 +14,5 @@
   },
   "exports": {
     "./useBalance": "./src/hooks/useBalance.ts"
-}
+  }
 }

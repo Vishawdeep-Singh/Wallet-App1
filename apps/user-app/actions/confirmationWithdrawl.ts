@@ -1,10 +1,10 @@
-"use server";
-import prisma from "@repo/db/client";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../app/lib/auth";
-import { ServerSessionUser } from "@repo/interfaces/interfaces";
+'use server';
+import prisma from '@repo/db/client';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../app/lib/auth';
+import { ServerSessionUser } from '@repo/interfaces/interfaces';
 
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 
 export const ConfirmWithDrawl = async (password: string) => {
   try {
@@ -14,7 +14,7 @@ export const ConfirmWithDrawl = async (password: string) => {
 
     if (!session?.user || !session.user?.id) {
       return {
-        message: "Unauthenticated Request",
+        message: 'Unauthenticated Request',
       };
     }
 
@@ -27,21 +27,21 @@ export const ConfirmWithDrawl = async (password: string) => {
       },
     });
     if (!passwordDB) {
-      return { message: "User record not found." };
+      return { message: 'User record not found.' };
     }
     const validation = await bcrypt.compare(
       password,
       passwordDB?.password as string
     );
     if (validation) {
-      return { message: "success" };
+      return { message: 'success' };
     }
-    return { message: "Password is not valid" };
+    return { message: 'Password is not valid' };
   } catch (error) {
     if (error instanceof Error) {
       return { message: `An error occurred: ${error.message}` };
     } else {
-      return { message: "An unknown error occurred in creating Off Ramp" };
+      return { message: 'An unknown error occurred in creating Off Ramp' };
     }
   }
 };

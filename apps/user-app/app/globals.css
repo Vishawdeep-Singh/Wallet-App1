@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-#vaultbtn{
-    box-shadow: '10px 10px 0px rgba(175, 80, 220, .7)';
-  }
-  html {
-    @apply scroll-smooth;
-  }
-  
+#vaultbtn {
+  box-shadow: '10px 10px 0px rgba(175, 80, 220, .7)';
+}
+html {
+  @apply scroll-smooth;
+}
