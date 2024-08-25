@@ -47,6 +47,10 @@ jobs:
           sudo docker rm merchant-app || true
           sudo docker stop bank-app || true
           sudo docker rm bank-app || true
+
+          sudo docker rmi vishawdeepsingh602/user-app:latest || true
+          sudo docker rmi vishawdeepsingh602/merchant-app:latest || true
+          sudo docker rmi vishawdeepsingh602/bank-app:latest || true
           sudo docker pull vishawdeepsingh602/user-app:latest
           sudo docker pull vishawdeepsingh602/merchant-app:latest
           sudo docker pull vishawdeepsingh602/bank-app:latest
