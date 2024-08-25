@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package.json package-lock.json turbo.json ./
 
-COPY apps ./apps
+COPY apps/user-app ./apps/user-app
 COPY packages ./packages
 
 # Install dependencies
