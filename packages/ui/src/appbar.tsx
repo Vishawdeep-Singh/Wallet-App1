@@ -65,7 +65,7 @@ export const Appbar = () => {
             <motion.button
               onClick={() => {
                 router.push(
-                  'https://vault.merchant-app.vishawdeepsingh.in/api/auth/signin'
+                  'https://vault.merchant-app.vishawdeepsingh.in/dashboard'
                 );
               }}
               className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 md:py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
@@ -105,7 +105,7 @@ export const Appbar = () => {
             <motion.button
               onClick={() => {
                 router.push(
-                  'https://vault.merchant-app.vishawdeepsingh.in/api/auth/signin'
+                  'https://vault.merchant-app.vishawdeepsingh.in/dashboard'
                 );
               }}
               className=" bg-[#5741d7] hidden md:block text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
@@ -235,7 +235,7 @@ export const Appbar = () => {
                 <motion.button
                   onClick={() => {
                     router.push(
-                      'https://vault.merchant-app.vishawdeepsingh.in/api/auth/signin'
+                      'https://vault.merchant-app.vishawdeepsingh.in/dashboard'
                     );
                   }}
                   className=" bg-[#5741d7] text-white rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"

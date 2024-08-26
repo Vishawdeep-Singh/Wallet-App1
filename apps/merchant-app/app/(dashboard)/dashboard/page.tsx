@@ -9,7 +9,7 @@ export default async function Dashboard() {
   const session: any = await getServerSession(authOptions);
   if (!session?.user) {
     redirect(
-      `/api/auth/signin?callbackUrl=${encodeURIComponent('/dashboard')}`
+      `/api/auth/signin?callbackUrl=${encodeURIComponent('https://vault.merchant-app.vishawdeepsingh.in/dashboard')}`
     );
   }
 
