@@ -1,7 +1,16 @@
+import { ServerSessionUser } from '@repo/interfaces/interfaces';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
+import { authOptions } from './lib/auth';
 import './page.module.css';
 import { ImageMotion } from '@repo/ui/image-motion';
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const session: { user: ServerSessionUser } | null =
+    await getServerSession(authOptions);
+  if (session?.user) {
+    redirect('/dashboard');
+  }
   return (
     <div className="bg-[#faf3f4]">
       <div className=" w-full srcoll-smooth overflow-y-hidden relative">
