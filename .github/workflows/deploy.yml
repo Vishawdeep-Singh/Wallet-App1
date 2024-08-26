@@ -58,6 +58,7 @@ jobs:
 
             sudo docker run  -e DATABASE_URL=${{ secrets.DB_URL }} \
                              -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
+                             -e NODE_ENV=${{secrets.NODE_ENV}} \
                              -e NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} \
                              -d --name user-app \
                              --network my-network \
@@ -66,6 +67,7 @@ jobs:
 
             sudo docker run  -e DATABASE_URL=${{ secrets.DB_URL }} \
                              -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
+                             -e NODE_ENV=${{secrets.NODE_ENV}} \
                              -e NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL2 }} \
                              -e GOOGLE_ID=${{ secrets.GOOGLE_ID }} \
                              -e GOOGLE_SECRET=${{ secrets.GOOGLE_SECRET }} \

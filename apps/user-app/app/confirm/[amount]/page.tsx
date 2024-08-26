@@ -67,7 +67,12 @@ export default () => {
                     progress: undefined,
                     theme: 'colored',
                     transition: Bounce,
+
+                  
                   });
+                  setTimeout(()=>{
+                       router.push('/dashboard')
+                  },6000)
                 }
               } else {
                 toast.error(`${response.message}`, {
@@ -81,6 +86,9 @@ export default () => {
                   theme: 'colored',
                   transition: Bounce,
                 });
+                setTimeout(()=>{
+                  router.push('/dashboard')
+             },6000)
               }
             }}
             appName={''}

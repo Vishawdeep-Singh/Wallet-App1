@@ -6,7 +6,7 @@ import { ServerSessionUser } from '@repo/interfaces/interfaces';
 import axios from 'axios';
 import bcrypt from 'bcrypt';
 
-export const offRampTx = async (amount: Number) => {
+export const offRampTx = async (amount: number) => {
   try {
     const session: {
       user: ServerSessionUser;
@@ -16,6 +16,19 @@ export const offRampTx = async (amount: Number) => {
       return {
         message: 'Unauthenticated Request',
       };
+    }
+    const balance = await prisma.user.findUnique({
+      where:{
+        id:Number(session.user.id)
+      },
+      select:{
+        Balance:true
+      }
+    })
+    if(Number(balance?.Balance[0]?.amount)<amount){
+      return {
+        message: 'You dont have money in wallet try adding money ...'
+      }
     }
 
     const { data: tokenResponse } = await axios.post(

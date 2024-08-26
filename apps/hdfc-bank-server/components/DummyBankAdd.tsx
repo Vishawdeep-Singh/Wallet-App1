@@ -20,9 +20,8 @@ export default function CardForm2({
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  console.log(process.env.JWT_SECRET);
 
   return (
     <div className="md:max-w-md mx-auto p-4 mt-32 w-[95%] bg-white border border-gray-200 rounded-lg shadow-md">
@@ -83,26 +82,46 @@ export default function CardForm2({
       </div>
       <button
         onClick={async () => {
-          const response = await axios.post(
-            'https://bank-webhook.vishawdeepsingh29.workers.dev/hdfcWebhook/withdraw',
-            {
-              paymentId: txId,
-              userId: tokenInfo.sub,
-              token: token,
-              amount: amount,
-            },
-            {
-              headers: {
-                'Content-Type': 'application/json',
+          try {
+            setLoading(true)
+            const response = await axios.post(
+              'https://bank-webhook.vishawdeepsingh29.workers.dev/hdfcWebhook/withdraw',
+              {
+                paymentId: txId,
+                userId: tokenInfo.sub,
+                token: token,
+                amount: amount,
               },
-            }
-          );
-          if (response.data.message === 'Captured-off-ramp') {
-            router.push(
-              'https://vault.user-app.vishawdeepsingh.in/transfer/withdraw'
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              }
             );
-          } else {
-            toast.error(`${response.data.message}`, {
+            setLoading(false)
+            if (response.data.message === 'Captured-off-ramp') {
+              router.push(
+                'https://vault.user-app.vishawdeepsingh.in/transfer/withdraw'
+              );
+            } else {
+              setLoading(false)
+              toast.error(`${response.data.message}`, {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+                transition: Bounce,
+              });
+
+            }
+          } catch (error) {
+            setLoading(false)
+            console.error('An error occurred:', error);
+            toast.error('An unexpected error occurred. Please try again.', {
               position: 'top-right',
               autoClose: 5000,
               hideProgressBar: false,
@@ -114,13 +133,17 @@ export default function CardForm2({
               transition: Bounce,
             });
           }
-          console.log(token, tokenInfo, amount, txId);
         }}
         type="submit"
         className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         Submit
       </button>
+      {loading && <div className='text-2xl'>
+        Processing
+        </div>}
     </div>
   );
+ 
 }
+const delay = (ms:any) => new Promise((resolve) => setTimeout(resolve, ms));

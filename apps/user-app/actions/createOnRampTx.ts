@@ -18,6 +18,7 @@ export async function createOnRamp(provider: string, amount: number) {
         message: 'Unauthenticated Request',
       };
     }
+    
 
     const { data: tokenResponse } = await axios.post(
       'http://bank-app:3000/api/getToken',

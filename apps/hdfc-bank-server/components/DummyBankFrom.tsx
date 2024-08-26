@@ -20,6 +20,7 @@ export default function CardForm({
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [error] = useState('');
+  const [loading,setLoading]=useState(false)
   const router = useRouter();
 
   console.log(process.env.JWT_SECRET);
@@ -82,43 +83,67 @@ export default function CardForm({
         />
       </div>
       <button
-        onClick={async () => {
-          const response = await axios.post(
-            'https://bank-webhook.vishawdeepsingh29.workers.dev/hdfcWebhook',
-            {
-              paymentId: txId,
-              userId: tokenInfo.sub,
-              token: token,
-              amount: amount,
+    onClick={async () => {
+      try {
+        setLoading(true)
+        const response = await axios.post(
+          'https://bank-webhook.vishawdeepsingh29.workers.dev/hdfcWebhook',
+          {
+            paymentId: txId,
+            userId: tokenInfo.sub,
+            token: token,
+            amount: amount,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
             },
-            {
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            }
-          );
-          if (response.data.message === 'Captured') {
-            router.push('https://vault.user-app.vishawdeepsingh.in/transfer');
-          } else {
-            toast.error(`${response.data.message}`, {
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
-              transition: Bounce,
-            });
           }
-          console.log(token, tokenInfo, amount, txId);
+        );
+        setLoading(false)
+        if (response.data.message === 'Captured-off-ramp') {
+          router.push(
+            'https://vault.user-app.vishawdeepsingh.in/transfer'
+          );
+        } else {
+          setLoading(false)
+          toast.error(`${response.data.message}`, {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+            transition: Bounce,
+          });
+
+        }
+      } catch (error) {
+        setLoading(false)
+        console.error('An error occurred:', error);
+        toast.error('An unexpected error occurred. Please try again.', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+          transition: Bounce,
+        });
+      }
         }}
         type="submit"
         className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         Submit
       </button>
+      {loading && <div className='text-2xl'>
+        Processing
+        </div>}
     </div>
   );
 }
