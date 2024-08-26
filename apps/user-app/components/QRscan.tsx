@@ -43,7 +43,7 @@ export const QRSCAN = () => {
       try {
         setLoading(true);
         const response = await axios.post(
-          'http://vault.merchant-app.vishawdeepsingh.in/api/verifyToken',
+          'https://vault.merchant-app.vishawdeepsingh.in/api/verifyToken',
           {
             accessToken: `${result.text}`, // Replace with actual data
           },

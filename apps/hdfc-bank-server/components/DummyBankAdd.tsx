@@ -99,7 +99,7 @@ export default function CardForm2({
           );
           if (response.data.message === 'Captured-off-ramp') {
             router.push(
-              'http://vault.user-app.vishawdeepsingh.in/transfer/withdraw'
+              'https://vault.user-app.vishawdeepsingh.in/transfer/withdraw'
             );
           } else {
             toast.error(`${response.data.message}`, {

@@ -98,7 +98,7 @@ export default function CardForm({
             }
           );
           if (response.data.message === 'Captured') {
-            router.push('http://vault.user-app.vishawdeepsingh.in/transfer');
+            router.push('https://vault.user-app.vishawdeepsingh.in/transfer');
           } else {
             toast.error(`${response.data.message}`, {
               position: 'top-right',

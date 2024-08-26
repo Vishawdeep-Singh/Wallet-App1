@@ -77,7 +77,7 @@ export const AddMoney = () => {
                 if (response.message === 'Done') {
                   const token = encodeURIComponent(response.token as string);
                   router.push(
-                    `http://vault.bank-app.vishawdeepsingh.in/bank/${response.txId}?token=${token}&amount=${value}`
+                    `https://vault.bank-app.vishawdeepsingh.in/bank/${response.txId}?token=${token}&amount=${value}`
                   );
                 } else {
                   toast.error(`${response.message}`, {
