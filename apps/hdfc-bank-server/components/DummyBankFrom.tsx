@@ -101,7 +101,7 @@ export default function CardForm({
           }
         );
         setLoading(false)
-        if (response.data.message === 'Captured-off-ramp') {
+        if (response.data.message === 'Captured') {
           router.push(
             'https://vault.user-app.vishawdeepsingh.in/transfer'
           );
