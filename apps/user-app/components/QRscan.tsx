@@ -25,6 +25,14 @@ const LoadingOverlay: React.FC = () => {
 export const QRSCAN = () => {
   const [cameraActive, setCameraActive] = useState<boolean>(true);
   const [loading, setLoading] = useState(false);
+  const [facingMode, setFacingMode] = useState('user');
+
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 450;
+    if (isMobile) {
+      setFacingMode('environment');
+    }
+  }, []);
   const router = useRouter();
   console.log(cameraActive);
 
@@ -105,7 +113,7 @@ export const QRSCAN = () => {
           <QrReader
             onResult={handleScan}
             constraints={{
-              facingMode: 'user',
+              facingMode:facingMode,
             }}
             videoId="video"
             className="border-4 w-full h-full border-black  rounded-lg"

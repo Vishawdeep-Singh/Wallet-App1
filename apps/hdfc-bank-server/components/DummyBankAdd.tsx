@@ -87,7 +87,7 @@ export default function CardForm2({
             'https://bank-webhook.vishawdeepsingh29.workers.dev/hdfcWebhook/withdraw',
             {
               paymentId: txId,
-              user_identifier: tokenInfo.sub,
+              userId: tokenInfo.sub,
               token: token,
               amount: amount,
             },
