@@ -1,3 +1,68 @@
+# Payments Wallet Application
+
+A full-featured payments wallet application offering seamless person-to-person transfers, bank-to-wallet (onramp), wallet-to-bank (off-ramp), and QR code-based payments. This project includes a user-friendly merchant application, transaction tracking, and robust deployment architecture.
+
+---
+
+## Key Features
+
+### **User Application**:
+- **Transfers**:
+  - Person-to-person wallet transfers.
+  - Bank-to-wallet (onramp) and wallet-to-bank (off-ramp) transactions.
+- **QR Code Payments**:
+  - Scan-and-pay functionality for quick transactions.
+- **Transaction History**:
+  - View detailed transaction and payment history.
+
+### **Merchant Application**:
+- Generate QR codes for payment requests.
+- Track payment history with intuitive UI.
+
+### **Backend Services**:
+- **Bank Webhook Integration**:
+  - Node.js-based webhook service to handle real-time bank transaction processing.
+- **Transaction Handling**:
+  - Reliable and secure processing of onramp/off-ramp and peer-to-peer transactions.
+
+### **CI/CD Pipeline**:
+- Automated deployment to AWS EC2 using **Docker**.
+- Ensures fast, repeatable, and error-free deployments.
+
+### **Architecture**:
+Managed using **Turborepo**, featuring four core apps:
+1. **User App**: End-user wallet interface.
+2. **Merchant App**: Merchant-side app for QR generation and tracking.
+3. **Dummy Bank Interface**: Simulated bank for testing onramp/off-ramp flows.
+4. **Bank Webhook Service**: Handles bank-related webhook callbacks.
+
+### **Hosting**:
+All services are deployed on **AWS EC2** for scalability and reliability.
+
+---
+
+## Deployment
+
+### Prerequisites
+1. **Node.js** (v14 or above)
+2. **Docker** and **Docker Compose**
+3. AWS account with EC2 instances set up.
+
+### Clone the Repository
+```bash
+git clone https://github.com/your-repo/payments-wallet.git
+cd payments-wallet
+
+
+
+
+
+
+
+
+
+
+
 # Turborepo starter
 
 This is an official starter Turborepo.
